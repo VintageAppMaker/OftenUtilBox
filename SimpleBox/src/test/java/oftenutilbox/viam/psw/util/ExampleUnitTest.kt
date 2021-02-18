@@ -1,4 +1,4 @@
-package com.ncfoundation.psw.oftenutilbox
+package oftenutilbox.viam.psw.util
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.ncfoundation.psw.simplebox
+package oftenutilbox.viam.psw.util
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

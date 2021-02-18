@@ -1,8 +1,9 @@
-package com.ncfoundation.psw.oftenutilbox
+package oftenutilbox.viam.psw.Test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.ncfoundation.psw.simplebox.toast
+import com.ncfoundation.psw.oftenutilbox.R
+import oftenutilbox.viam.psw.util.toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
