@@ -52,8 +52,8 @@ fun Context.dpToPx(dp: Float): Int = TypedValue.applyDimension(TypedValue.COMPLE
 fun View.setHeightDp(value: Int) {
     val lp = layoutParams
     lp?.let {
-        lp.height = dpToPx(value.toFloat())
-        layoutParams = lp
+        it.height = dpToPx(value.toFloat())
+        layoutParams = it
     }
 }
 
@@ -68,17 +68,17 @@ fun View.setWidthDp(value: Int) {
 
 fun View.setMarginDp(left: Float? = null, top: Float? = null, right: Float? = null, bottom: Float? = null) {
     layoutInfo<ViewGroup.MarginLayoutParams> {
-        left?.run { leftMargin = dpToPx(this) }
-        top?.run { topMargin = dpToPx(this) }
-        right?.run { rightMargin = dpToPx(this) }
-        bottom?.run { bottomMargin = dpToPx(this) }
+        left?.let    { leftMargin   = dpToPx(it) }
+        top?.let     { topMargin    = dpToPx(it) }
+        right?.let   { rightMargin  = dpToPx(it) }
+        bottom?.let  { bottomMargin = dpToPx(it) }
     }
 }
 
-fun View.setPaddingDp(left: Float? = null, top: Float? = null, right: Float? = null, bottom: Float? = null) {
-    setPadding(dpToPx(left!!), dpToPx(top!!), dpToPx(right!!), dpToPx(bottom!!))
+fun View.setPaddingDp(left: Float = 0f, top: Float = 0f, right: Float = 0f, bottom: Float = 0f) {
+    setPadding(dpToPx(left), dpToPx(top), dpToPx(right), dpToPx(bottom))
 }
 
-inline fun <reified T : ViewGroup.LayoutParams> View.layoutInfo(block: T.() -> Unit) {
-    if (layoutParams is T) block(layoutParams as T)
+inline fun <reified T : ViewGroup.LayoutParams> View.layoutInfo(fnCode: T.() -> Unit) {
+    if (layoutParams is T) fnCode(layoutParams as T)
 }
