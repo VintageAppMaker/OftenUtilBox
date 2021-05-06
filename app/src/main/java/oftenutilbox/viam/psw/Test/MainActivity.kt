@@ -1,5 +1,6 @@
 package oftenutilbox.viam.psw.Test
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -14,6 +15,23 @@ class MainActivity : AppCompatActivity() {
         testSystemOveray()
         testErrorHandler()
         testViewSize()
+        testPref()
+
+    }
+
+
+    // pref 사용
+    val ISFIRST_RUN = "ISFIRST_RUN"
+    var SharedPreferences.isFirst: Boolean
+        get() = getBoolean(ISFIRST_RUN, true)
+        set(value) = edit { putBoolean(ISFIRST_RUN, value) }
+
+    private fun testPref() {
+        if ( pref.isFirst ){
+            pref.isFirst = false
+        } else{
+            toast("not first")
+        }
 
     }
 
