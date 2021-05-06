@@ -19,8 +19,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun testViewSize() {
         val txtHello = findViewById<TextView>(R.id.message)
-        txtHello.setWidth(this, 100)
-        txtHello.setHeight(this, 100)
+        txtHello.setWidthDp(300)
+        txtHello.setHeightDp(40)
+        txtHello.setMarginDp(10F, 5F, 1F, 1F)
+        txtHello.setPaddingDp(30F, 10F, 10F, 10F)
     }
 
     private fun testSystemOveray() {
