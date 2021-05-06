@@ -50,7 +50,7 @@ fun Activity.setOverSystemMenu() {
     }
 }
 
-// View의
+// View의 Height 설정
 fun View.setHeight(context : Context, value: Int) {
     val lp = layoutParams
     lp?.let {
@@ -59,6 +59,7 @@ fun View.setHeight(context : Context, value: Int) {
     }
 }
 
+// View의 width 설정
 fun View.setWidth(context : Context, value: Int) {
     val lp = layoutParams
     lp?.let {
