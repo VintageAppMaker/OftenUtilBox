@@ -69,10 +69,14 @@ fun View.setWidth(context : Context, value: Int) {
 }
 
 // try .. catch 간편화
-fun SafeHandler( fnCode : () -> Unit, fnError : (String) -> Unit = {}  ){
+fun SafeHandler( fnCode : () -> Unit, fnError : ( (String) -> Unit)? = null  ){
     try{
         fnCode()
     } catch ( e: Exception){
-        fnError(e.toString())
+        if (fnError != null ) {
+            fnError(e.toString())
+        } else {
+            // [TODO] 디폴트로 하고자 하는 기능
+        }
     }
 }
