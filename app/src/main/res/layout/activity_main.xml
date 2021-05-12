@@ -25,6 +25,13 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Spinner
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_spinner"
+                android:id="@+id/spnCustom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
         </LinearLayout>
 
     </ScrollView>

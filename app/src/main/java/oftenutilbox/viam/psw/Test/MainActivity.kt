@@ -3,6 +3,7 @@ package oftenutilbox.viam.psw.Test
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Spinner
 import android.widget.TextView
 import com.test.psw.oftenutilbox.R
 import oftenutilbox.viam.psw.util.*
@@ -16,7 +17,13 @@ class MainActivity : AppCompatActivity() {
         testErrorHandler()
         testViewSize()
         testPref()
+        testCustomSpinner()
 
+    }
+
+    private fun testCustomSpinner() {
+        val spn = findViewById<Spinner>(R.id.spnCustom)
+        spn.setCustomAdapter(this, mutableListOf("1", "2", "3", "4"))
     }
 
 

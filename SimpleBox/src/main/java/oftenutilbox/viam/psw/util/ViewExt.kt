@@ -5,10 +5,16 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.BaseAdapter
+import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import com.test.psw.simplebox.R
 
 
 // Toast 간소화
@@ -81,4 +87,46 @@ fun View.setPaddingDp(left: Float = 0f, top: Float = 0f, right: Float = 0f, bott
 
 inline fun <reified T : ViewGroup.LayoutParams> View.layoutInfo(fnCode: T.() -> Unit) {
     if (layoutParams is T) fnCode(layoutParams as T)
+}
+
+fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String> ){
+    class CustomSpnAdapter : BaseAdapter {
+        var lst : MutableList<String> = mutableListOf<String>()
+        var context : Context
+
+        constructor (context: Context, lst: MutableList<String>){
+            this.context = context
+            this.lst     = lst
+        }
+
+        override fun getCount(): Int {
+            return lst.size
+        }
+
+        override fun getItemId(p0: Int): Long {
+            return 0
+        }
+
+        override fun getItem(n: Int): String {
+            return lst[n]
+        }
+
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        override fun getView(n: Int, p1: View?, p2: ViewGroup?): View {
+            val v = LayoutInflater.from(context).inflate(R.layout.custom_spinner_item1, null)
+            v.findViewById<TextView>(R.id.text_first)?.apply {
+                text = lst[n]
+
+                // ** 이 부분을 처리하지 않으면
+                // ** spinner background가 커스텀 item으로 치환된다.
+                // ** XML에서도 background를 같은 리소스로 설정해야 한다.
+                if(p2 is Spinner) background = context.getDrawable(R.drawable.bg_spinner)
+
+            }
+            return v
+        }
+    }
+
+    adapter = CustomSpnAdapter(context, lst)
+
 }
