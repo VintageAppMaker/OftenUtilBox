@@ -19,7 +19,7 @@ fun SafeHandler( fnCode : () -> Unit, fnError : ( (String) -> Unit)? = null  ){
 
 fun UiStopWatch(min : Int, sec : Int, fnCallBack : (Int, Int) ->Unit) : Job {
     val job = CoroutineScope(Dispatchers.IO).launch {
-        val totalSeconds = TimeUnit.MINUTES.toSeconds(2) + TimeUnit.SECONDS.toSeconds(2)
+        val totalSeconds = TimeUnit.MINUTES.toSeconds(min.toLong()) + TimeUnit.SECONDS.toSeconds(sec.toLong())
         val tickSeconds = 1
         for (second in totalSeconds downTo tickSeconds) {
             val Passedmin = TimeUnit.SECONDS.toMinutes(second)

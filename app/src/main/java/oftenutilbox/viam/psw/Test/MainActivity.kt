@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         })
         txtWatch.setOnClickListener {
             job.cancel()
+            toast("stop")
         }
     }
 
