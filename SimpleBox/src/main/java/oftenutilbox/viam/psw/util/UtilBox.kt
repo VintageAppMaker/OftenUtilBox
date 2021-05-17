@@ -1,15 +1,8 @@
 package oftenutilbox.viam.psw.util
 
-import android.app.Activity
-import android.content.Context
-import android.graphics.Color
-import android.os.Build
-import android.util.TypedValue
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Toast
+import kotlinx.coroutines.*
 import java.lang.Exception
+import java.util.concurrent.TimeUnit
 
 // try .. catch 간편화
 fun SafeHandler( fnCode : () -> Unit, fnError : ( (String) -> Unit)? = null  ){
@@ -22,4 +15,21 @@ fun SafeHandler( fnCode : () -> Unit, fnError : ( (String) -> Unit)? = null  ){
             // [TODO] 디폴트로 하고자 하는 기능
         }
     }
+}
+
+fun UiStopWatch(min : Int, sec : Int, fnCallBack : (Int, Int) ->Unit) : Job {
+    val job = CoroutineScope(Dispatchers.IO).launch {
+        val totalSeconds = TimeUnit.MINUTES.toSeconds(2) + TimeUnit.SECONDS.toSeconds(2)
+        val tickSeconds = 1
+        for (second in totalSeconds downTo tickSeconds) {
+            val Passedmin = TimeUnit.SECONDS.toMinutes(second)
+            val Passedsec = second - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(second))
+            fnCallBack(Passedmin.toInt(), Passedsec.toInt())
+
+            delay(1000)
+        }
+
+        fnCallBack(0, 0)
+    }
+    return job
 }

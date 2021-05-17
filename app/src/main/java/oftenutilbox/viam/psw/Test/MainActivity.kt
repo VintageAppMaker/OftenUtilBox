@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.annotation.UiThread
 import com.test.psw.oftenutilbox.R
+import kotlinx.coroutines.Job
 import oftenutilbox.viam.psw.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +21,20 @@ class MainActivity : AppCompatActivity() {
         testPref()
         testCustomSpinner()
 
+        testCoroutine()
+    }
+
+    var job   : Job = Job()
+    private fun testCoroutine() {
+        val txtWatch = findViewById<TextView>(R.id.txtWatch)
+        job = UiStopWatch(2, 30, { min, sec ->
+            runOnUiThread {
+                txtWatch.setText("${min}분${sec}초")
+            }
+        })
+        txtWatch.setOnClickListener {
+            job.cancel()
+        }
     }
 
     private fun testCustomSpinner() {
