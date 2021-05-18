@@ -89,14 +89,23 @@ inline fun <reified T : ViewGroup.LayoutParams> View.layoutInfo(fnCode: T.() -> 
     if (layoutParams is T) fnCode(layoutParams as T)
 }
 
-fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String> ){
+fun View.setHeight(context : Context, value: Int) {
+    val lp = layoutParams
+    lp?.let {
+        lp.height = dpToPx(value.toFloat())
+        layoutParams = lp
+    }
+}
+fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unselectedTitle : String = "" ){
     class CustomSpnAdapter : BaseAdapter {
         var lst : MutableList<String> = mutableListOf<String>()
         var context : Context
+        var unselectedTitle : String
 
-        constructor (context: Context, lst: MutableList<String>){
+        constructor (context: Context, lst: MutableList<String>, unselectedTitle: String){
             this.context = context
             this.lst     = lst
+            this.unselectedTitle = unselectedTitle
         }
 
         override fun getCount(): Int {
@@ -117,16 +126,24 @@ fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String> ){
             v.findViewById<TextView>(R.id.text_first)?.apply {
                 text = lst[n]
 
+
                 // ** 이 부분을 처리하지 않으면
                 // ** spinner background가 커스텀 item으로 치환된다.
-                // ** XML에서도 background를 같은 리소스로 설정해야 한다.
-                if(p2 is Spinner) background = context.getDrawable(R.drawable.bg_spinner)
+                // ** XML에서도 background를 같게 지정해주어야 한다.
+                if(p2 is Spinner){
 
+                    background = context.getDrawable(R.drawable.bg_spinner)
+                    if(p2.selectedItemPosition < 0 ){
+                        p2.setHeight(context, 40)
+                        setTextColor(Color.parseColor("#626466"))
+                        text = unselectedTitle
+                    }
+                }
             }
             return v
         }
     }
 
-    adapter = CustomSpnAdapter(context, lst)
-
+    adapter = CustomSpnAdapter(context, lst, unselectedTitle)
+    this.setSelection(-1)
 }
