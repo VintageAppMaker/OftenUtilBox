@@ -98,7 +98,7 @@ fun View.setHeight(context : Context, value: Int) {
         layoutParams = lp
     }
 }
-fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unselectedTitle : String = "" ){
+fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unselectedTitle : String = "" , defaultHeight: Int = 40){
     class CustomSpnAdapter : BaseAdapter {
         var lst : MutableList<String> = mutableListOf<String>()
         var context : Context
@@ -136,7 +136,7 @@ fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unsel
 
                     background = context.getDrawable(R.drawable.bg_spinner)
                     if(p2.selectedItemPosition < 0 ){
-                        p2.setHeight(context, 40)
+                        p2.setHeight(context, defaultHeight)
                         setTextColor(Color.parseColor("#626466"))
                         text = unselectedTitle
                     }
@@ -147,6 +147,7 @@ fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unsel
     }
 
     adapter = CustomSpnAdapter(context, lst, unselectedTitle)
+    setHeight(context, defaultHeight)
     this.setSelection(-1)
 }
 
