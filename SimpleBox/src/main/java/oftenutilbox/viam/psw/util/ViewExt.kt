@@ -99,6 +99,8 @@ fun View.setHeight(context : Context, value: Int) {
         layoutParams = lp
     }
 }
+
+// 커스텀 스피너
 fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unselectedTitle : String = "" , defaultHeight: Int = 40){
     class CustomSpnAdapter : BaseAdapter {
         var lst : MutableList<String> = mutableListOf<String>()
@@ -152,6 +154,7 @@ fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unsel
     this.setSelection(-1)
 }
 
+// 특정뷰만 제외하고 GONE/VISIBLE
 fun layoutToggle(unchangeList : List<View>, bToggle : Boolean) {
     fun changeLayout(b :Boolean) {
         val parentV = unchangeList[0].parent
@@ -176,6 +179,7 @@ fun layoutToggle(unchangeList : List<View>, bToggle : Boolean) {
     }
 }
 
+// constrain layout 제어
 fun View.setConstraint(fnSet : (View, ConstraintLayout.LayoutParams) -> Unit) {
     if( layoutParams is ConstraintLayout.LayoutParams == false) return
     ( layoutParams as ConstraintLayout.LayoutParams).let{
@@ -183,4 +187,14 @@ fun View.setConstraint(fnSet : (View, ConstraintLayout.LayoutParams) -> Unit) {
     }
 
     requestLayout()
+}
+
+// 영역밖 그리기 enable
+fun View.setAllParentsClip() {
+    var p = parent
+    while (p is ViewGroup) {
+        p.clipChildren = false
+        p.clipToPadding = false
+        p = p.parent
+    }
 }
