@@ -150,27 +150,27 @@ fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unsel
     this.setSelection(-1)
 }
 
-fun doLayoutToggle(lst : List<View>, bToggle : Boolean) {
-    fun updateLayout(b :Boolean) {
-        val parentView = lst[0].parent
-        if (parentView !is ViewGroup) return
+fun layoutToggle(unchangeList : List<View>, bToggle : Boolean) {
+    fun changeLayout(b :Boolean) {
+        val parentV = unchangeList[0].parent
+        if (parentV !is ViewGroup) return
 
-        for (i in 0 until parentView.childCount) {
-            parentView
+        for (i in 0 until parentV.childCount) {
+            parentV
                 .getChildAt(i)
-                .takeIf { !( it in lst)  }
+                .takeIf { !( it in unchangeList)  }
                 ?.visibility = if (b) View.GONE else View.VISIBLE
         }
     }
 
-    val mainLooper = Looper.getMainLooper()
-    val isAlreadyMainLooper = Looper.myLooper() == mainLooper
+    val mainLooper   = Looper.getMainLooper()
+    val isMainLooper = Looper.myLooper() == mainLooper
 
-    if (isAlreadyMainLooper) {
-        updateLayout(bToggle)
+    if (isMainLooper) {
+        changeLayout(bToggle)
     } else {
         val handler = Handler(mainLooper)
-        handler.post( { updateLayout(bToggle) } )
+        handler.post( { changeLayout(bToggle) } )
     }
 
 
