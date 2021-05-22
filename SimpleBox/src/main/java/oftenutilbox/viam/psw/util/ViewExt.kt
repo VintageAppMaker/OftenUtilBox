@@ -16,6 +16,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.test.psw.simplebox.R
 
 
@@ -173,6 +174,13 @@ fun layoutToggle(unchangeList : List<View>, bToggle : Boolean) {
         val handler = Handler(mainLooper)
         handler.post( { changeLayout(bToggle) } )
     }
+}
 
+fun View.setConstraint(fnSet : (ConstraintLayout.LayoutParams) -> Unit) {
+    if( layoutParams is ConstraintLayout.LayoutParams == false) return
+    ( layoutParams as ConstraintLayout.LayoutParams).let{
+        fnSet(it)
+    }
 
+    requestLayout()
 }

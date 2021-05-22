@@ -3,13 +3,10 @@ package oftenutilbox.viam.psw.Test
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.test.psw.oftenutilbox.R
 import kotlinx.coroutines.Job
 import oftenutilbox.viam.psw.util.*
@@ -28,6 +25,28 @@ class MainActivity : AppCompatActivity() {
         testCoroutine()
 
         testLayoutChange().apply { this() }
+
+        testConstraint()
+    }
+
+    private fun testConstraint() {
+        val button_1 = findViewById<Button>(R.id.button_1)
+        val button_2 = findViewById<Button>(R.id.button_2)
+
+        // app:layout_constraintBottom_toBottomOf="parent"
+        //                    app:layout_constraintEnd_toEndOf="parent"
+        //                    app:layout_constraintHorizontal_bias="0.052"
+        //                    app:layout_constraintStart_toStartOf="parent"
+        //                    app:layout_constraintTop_toTopOf="parent"
+        //                    app:layout_constraintVertical_bias="1.0"
+
+        // 기존 contraint가 남아있으면 영향을 받음. parent가 id 있어야 함
+        button_2.setConstraint {
+            params ->
+            params.endToEnd     = (button_1.parent as ConstraintLayout).id
+            params.startToStart = button_1.id
+            params.topToTop = (button_1.parent as ConstraintLayout).id
+        }
     }
 
     var job   : Job = Job()
@@ -99,7 +118,7 @@ class MainActivity : AppCompatActivity() {
 
             btn?.apply {
                 setOnClickListener {
-                    doLayoutToggle(listOf(txtWatch, btn), bIsHidden)
+                    layoutToggle(listOf(txtWatch, btn), bIsHidden)
                     bIsHidden = !bIsHidden
                 }
             }
