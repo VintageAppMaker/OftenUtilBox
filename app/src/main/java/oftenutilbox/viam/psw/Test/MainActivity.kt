@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun testCustomSpinner() {
         val spn = findViewById<Spinner>(R.id.spnCustom)
-        spn.setCustomAdapter(this, mutableListOf("1", "2", "3", "4"))
+        spn.setCustomAdapter(this, mutableListOf("1", "2", "3", "4"), "선택안됨")
     }
 
 
