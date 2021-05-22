@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.annotation.UiThread
 import com.test.psw.oftenutilbox.R
 import kotlinx.coroutines.Job
 import oftenutilbox.viam.psw.util.*
@@ -95,38 +94,13 @@ class MainActivity : AppCompatActivity() {
         var bIsHidden = true
 
         return{
-            fun updateLayout(lst : List<View>, b :Boolean) {
-                val parentView = lst[0].parent
-                if (parentView !is ViewGroup) return
+            val txtWatch = findViewById<TextView>(R.id.txtWatch)
+            val btn = findViewById<Button>(R.id.btnChangeLayout)
 
-                for (i in 0 until parentView.childCount) {
-                    parentView
-                            .getChildAt(i)
-                            .takeIf { !( it in lst)  }
-                            ?.visibility = if (b) View.GONE else View.VISIBLE
-                }
-            }
-
-            fun doLayoutChanges() {
-                val txtWatch = findViewById<TextView>(R.id.txtWatch)
-
-                val mainLooper = Looper.getMainLooper()
-                val isAlreadyMainLooper = Looper.myLooper() == mainLooper
-                val btn = findViewById<Button>(R.id.btnChangeLayout)
-
-                if (isAlreadyMainLooper) {
-                    updateLayout(listOf(txtWatch, btn), bIsHidden)
-                } else {
-                    val handler = Handler(mainLooper)
-                    handler.post( { updateLayout(listOf(txtWatch, btn), bIsHidden) } )
-                }
-
-                bIsHidden = !bIsHidden
-            }
-
-            findViewById<Button>(R.id.btnChangeLayout)?.apply {
+            btn?.apply {
                 setOnClickListener {
-                    doLayoutChanges()
+                    doLayoutToggle(listOf(txtWatch, btn), bIsHidden)
+                    bIsHidden = !bIsHidden
                 }
             }
         }

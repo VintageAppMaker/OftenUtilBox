@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -146,4 +148,30 @@ fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unsel
 
     adapter = CustomSpnAdapter(context, lst, unselectedTitle)
     this.setSelection(-1)
+}
+
+fun doLayoutToggle(lst : List<View>, bToggle : Boolean) {
+    fun updateLayout(b :Boolean) {
+        val parentView = lst[0].parent
+        if (parentView !is ViewGroup) return
+
+        for (i in 0 until parentView.childCount) {
+            parentView
+                .getChildAt(i)
+                .takeIf { !( it in lst)  }
+                ?.visibility = if (b) View.GONE else View.VISIBLE
+        }
+    }
+
+    val mainLooper = Looper.getMainLooper()
+    val isAlreadyMainLooper = Looper.myLooper() == mainLooper
+
+    if (isAlreadyMainLooper) {
+        updateLayout(bToggle)
+    } else {
+        val handler = Handler(mainLooper)
+        handler.post( { updateLayout(bToggle) } )
+    }
+
+
 }
