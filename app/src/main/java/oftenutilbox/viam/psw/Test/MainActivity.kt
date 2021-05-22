@@ -42,10 +42,15 @@ class MainActivity : AppCompatActivity() {
 
         // 기존 contraint가 남아있으면 영향을 받음. parent가 id 있어야 함
         button_2.setConstraint {
-            params ->
-            params.endToEnd     = (button_1.parent as ConstraintLayout).id
+            v, params ->
+            params.endToEnd     = (v.parent as ConstraintLayout).id
             params.startToStart = button_1.id
-            params.topToTop = (button_1.parent as ConstraintLayout).id
+            params.horizontalBias = 1.0f
+            params.topToBottom = button_1.id
+
+            v.setHeightDp(60)
+            v.setMarginDp(0f, 0f, 40f, 10f)
+
         }
     }
 

@@ -176,10 +176,10 @@ fun layoutToggle(unchangeList : List<View>, bToggle : Boolean) {
     }
 }
 
-fun View.setConstraint(fnSet : (ConstraintLayout.LayoutParams) -> Unit) {
+fun View.setConstraint(fnSet : (View, ConstraintLayout.LayoutParams) -> Unit) {
     if( layoutParams is ConstraintLayout.LayoutParams == false) return
     ( layoutParams as ConstraintLayout.LayoutParams).let{
-        fnSet(it)
+        fnSet(this, it)
     }
 
     requestLayout()
