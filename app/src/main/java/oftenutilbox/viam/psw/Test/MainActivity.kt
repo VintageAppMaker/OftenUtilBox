@@ -3,6 +3,11 @@ package oftenutilbox.viam.psw.Test
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.annotation.UiThread
@@ -22,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         testCustomSpinner()
 
         testCoroutine()
+
+        testLayoutChange().apply { this() }
     }
 
     var job   : Job = Job()
@@ -80,6 +87,50 @@ class MainActivity : AppCompatActivity() {
         SafeHandler({
             val sum = 1 / 0
         }, { e -> toast(e) })
+    }
+
+
+    // 변수관리 귀찮아서 closure
+    private fun testLayoutChange() : ()->Unit{
+        var bIsHidden = true
+
+        return{
+            fun updateLayout(lst : List<View>, b :Boolean) {
+                val parentView = lst[0].parent
+                if (parentView !is ViewGroup) return
+
+                for (i in 0 until parentView.childCount) {
+                    parentView
+                            .getChildAt(i)
+                            .takeIf { !( it in lst)  }
+                            ?.visibility = if (b) View.GONE else View.VISIBLE
+                }
+            }
+
+            fun doLayoutChanges() {
+                val txtWatch = findViewById<TextView>(R.id.txtWatch)
+
+                val mainLooper = Looper.getMainLooper()
+                val isAlreadyMainLooper = Looper.myLooper() == mainLooper
+                val btn = findViewById<Button>(R.id.btnChangeLayout)
+
+                if (isAlreadyMainLooper) {
+                    updateLayout(listOf(txtWatch, btn), bIsHidden)
+                } else {
+                    val handler = Handler(mainLooper)
+                    handler.post( { updateLayout(listOf(txtWatch, btn), bIsHidden) } )
+                }
+
+                bIsHidden = !bIsHidden
+            }
+
+            findViewById<Button>(R.id.btnChangeLayout)?.apply {
+                setOnClickListener {
+                    doLayoutChanges()
+                }
+            }
+        }
+
     }
 
 }
