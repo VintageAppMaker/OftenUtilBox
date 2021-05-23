@@ -27,6 +27,17 @@ class MainActivity : AppCompatActivity() {
         testLayoutChange().apply { this() }
 
         testConstraint()
+        testBottomMessage()
+
+    }
+
+    private fun testBottomMessage() {
+        val btnShowMessage = findViewById<Button>(R.id.btnShowMessage)
+        btnShowMessage.setOnClickListener {
+            showBottomMessage("1")
+            showBottomMessage("2")
+            showBottomMessage("3 👨‍🎓")
+        }
     }
 
     private fun testConstraint() {

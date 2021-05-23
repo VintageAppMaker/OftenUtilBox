@@ -11,17 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.BaseAdapter
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.test.psw.simplebox.R
 
 
 // Toast 간소화
-fun Context?.toast(s : String){
+fun Context?.toast(s: String){
     Toast.makeText(this, s, Toast.LENGTH_LONG).show()
 }
 
@@ -92,7 +90,7 @@ inline fun <reified T : ViewGroup.LayoutParams> View.layoutInfo(fnCode: T.() -> 
     if (layoutParams is T) fnCode(layoutParams as T)
 }
 
-fun View.setHeight(context : Context, value: Int) {
+fun View.setHeight(context: Context, value: Int) {
     val lp = layoutParams
     lp?.let {
         lp.height = dpToPx(value.toFloat())
@@ -101,7 +99,7 @@ fun View.setHeight(context : Context, value: Int) {
 }
 
 // 커스텀 스피너
-fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unselectedTitle : String = "" , defaultHeight: Int = 40){
+fun Spinner.setCustomAdapter(context: Context, lst: MutableList<String>, unselectedTitle: String = "", defaultHeight: Int = 40){
     class CustomSpnAdapter : BaseAdapter {
         var lst : MutableList<String> = mutableListOf<String>()
         var context : Context
@@ -155,8 +153,8 @@ fun Spinner.setCustomAdapter(context : Context, lst : MutableList<String>, unsel
 }
 
 // 특정뷰만 제외하고 GONE/VISIBLE
-fun layoutToggle(unchangeList : List<View>, bToggle : Boolean) {
-    fun changeLayout(b :Boolean) {
+fun layoutToggle(unchangeList: List<View>, bToggle: Boolean) {
+    fun changeLayout(b: Boolean) {
         val parentV = unchangeList[0].parent
         if (parentV !is ViewGroup) return
 
@@ -175,12 +173,12 @@ fun layoutToggle(unchangeList : List<View>, bToggle : Boolean) {
         changeLayout(bToggle)
     } else {
         val handler = Handler(mainLooper)
-        handler.post( { changeLayout(bToggle) } )
+        handler.post({ changeLayout(bToggle) })
     }
 }
 
 // constrain layout 제어
-fun View.setConstraint(fnSet : (View, ConstraintLayout.LayoutParams) -> Unit) {
+fun View.setConstraint(fnSet: (View, ConstraintLayout.LayoutParams) -> Unit) {
     if( layoutParams is ConstraintLayout.LayoutParams == false) return
     ( layoutParams as ConstraintLayout.LayoutParams).let{
         fnSet(this, it)
@@ -196,5 +194,35 @@ fun View.setAllParentsClip() {
         p.clipChildren = false
         p.clipToPadding = false
         p = p.parent
+    }
+}
+
+// 하단 메시지
+fun Context.showBottomMessage(s: String, dimEnable : Boolean = true){
+    BottomSheetDialog(this).apply {
+        val dialogView = layoutInflater.inflate(R.layout.simple_bottom_message, null)
+        dialogView?.apply {
+            findViewById<TextView>(R.id.txtMessage)?.apply {
+                text = s
+            }
+
+            findViewById<ImageView>(R.id.close_button)?.apply {
+                setOnClickListener {
+                    dismiss()
+                }
+            }
+        }
+        setContentView(dialogView)
+
+        // 배경에 dim 효과 (여러 개 호출 시, dim이 한 개라도 설정되어있으면 모두 dim으로 됨)
+        if (dimEnable == false){
+            val window = getWindow()
+            window!!.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
+            window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        }
+
+        show()
+
     }
 }
