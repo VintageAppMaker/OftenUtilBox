@@ -198,7 +198,7 @@ fun View.setAllParentsClip() {
 }
 
 // 하단 메시지
-fun Context.showBottomMessage(s: String, dimEnable : Boolean = true){
+fun Context.showBottomMessage(s: String, dimEnable : Boolean = true, height : Float = 50f){
     BottomSheetDialog(this).apply {
         val dialogView = layoutInflater.inflate(R.layout.simple_bottom_message, null)
         dialogView?.apply {
@@ -212,7 +212,6 @@ fun Context.showBottomMessage(s: String, dimEnable : Boolean = true){
                 }
             }
         }
-        setContentView(dialogView)
 
         // 배경에 dim 효과 (여러 개 호출 시, dim이 한 개라도 설정되어있으면 모두 dim으로 됨)
         if (dimEnable == false){
@@ -221,6 +220,9 @@ fun Context.showBottomMessage(s: String, dimEnable : Boolean = true){
                     WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
             window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         }
+
+        setContentView(dialogView)
+        dialogView.getLayoutParams().height = dpToPx(height)
 
         show()
 

@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private fun testBottomMessage() {
         val btnShowMessage = findViewById<Button>(R.id.btnShowMessage)
         btnShowMessage.setOnClickListener {
-            showBottomMessage("1")
+            showBottomMessage("1\n1\n1\n1\n", height = 100f)
             showBottomMessage("2")
             showBottomMessage("3 👨‍🎓")
         }
