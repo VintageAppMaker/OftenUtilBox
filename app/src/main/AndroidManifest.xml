@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OftenUtilBox">
+        <activity android:name="oftenutilbox.viam.psw.Test.NestedScrollCustomActivity"></activity>
         <activity android:name="oftenutilbox.viam.psw.Test.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

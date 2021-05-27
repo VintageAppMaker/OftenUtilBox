@@ -13,7 +13,7 @@
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
 
-        <item name="android:windowTranslucentStatus">true</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
         <item name="windowNoTitle">true</item>
 
     </style>
