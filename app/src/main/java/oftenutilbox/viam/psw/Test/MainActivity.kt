@@ -1,5 +1,6 @@
 package oftenutilbox.viam.psw.Test
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +29,18 @@ class MainActivity : AppCompatActivity() {
 
         testConstraint()
         testBottomMessage()
+        
+        testNestedScroll()
 
+    }
+
+    private fun testNestedScroll() {
+        val btnNestedScroll = findViewById<Button>(R.id.btnNestedScroll)
+        btnNestedScroll.setOnClickListener {
+            Intent(this, NestedScrollCustomActivity::class.java)?.apply {
+                startActivity(this)
+            }
+        }
     }
 
     private fun testBottomMessage() {
