@@ -1,6 +1,7 @@
 package oftenutilbox.viam.psw.util
 
 import android.app.Activity
+import android.appwidget.AppWidgetHost
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
@@ -226,5 +227,41 @@ fun Context.showBottomMessage(s: String, dimEnable : Boolean = true, height : Fl
 
         show()
 
+    }
+}
+
+// pop을 관리하기 싫어서 closure로 생성함
+data class PopupInfo(
+    val v : View,
+    val width  : Int,
+    val height : Int,
+    val x  : Int,
+    val y : Int
+ )
+
+// PopupWindow를 관리하기 위한 Closure
+fun Context.makePopupClosure(toView: View, fnSetup : (()->Unit ) -> PopupInfo) : ()->Unit{
+    var pop : PopupWindow? = null
+    fun dismiss() = pop?.dismiss()
+    return {
+
+        val popInfo = fnSetup(::dismiss)
+
+        val width  = if(popInfo.width == 0 ){
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        } else dpToPx(popInfo.width.toFloat())
+
+        val height = if(popInfo.height == 0 ){
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        } else dpToPx(popInfo.height.toFloat())
+
+        pop = PopupWindow(
+                popInfo.v,
+                width,
+                height,
+                true
+        ).apply {
+            showAsDropDown(toView, popInfo.x, popInfo.y)
+        }
     }
 }

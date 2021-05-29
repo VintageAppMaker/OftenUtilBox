@@ -1,9 +1,16 @@
 package oftenutilbox.viam.psw.Test
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.ImageView
+import android.widget.TextView
 import com.test.psw.oftenutilbox.R
 import oftenutilbox.viam.psw.util.NewScrollView
+import oftenutilbox.viam.psw.util.PopupInfo
+import oftenutilbox.viam.psw.util.makePopupClosure
+import oftenutilbox.viam.psw.util.toast
 
 class NestedScrollCustomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +20,25 @@ class NestedScrollCustomActivity : AppCompatActivity() {
 
         findViewById<NewScrollView>(R.id.scrMain)?.apply {
             header = findViewById(R.id.stick_header)
+        }
+
+        val toView = findViewById<ImageView>(R.id.more)
+        toView.setOnClickListener {
+            makePopupClosure(toView){
+                fnDismiss ->
+                val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                val view = inflater.inflate(R.layout.popup_item, null)
+
+                view.findViewById<TextView>(R.id.text_menu1)?.apply{
+                    setOnClickListener {
+                        toast("text1 click!")
+                        fnDismiss()
+                    }
+                }
+
+                // width, height가 0이면 wrap_contents
+                PopupInfo(view, 0, 40, 30, 0)
+            }.apply { this() }
         }
 
     }
