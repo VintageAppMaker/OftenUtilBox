@@ -239,35 +239,34 @@ data class PopupInfo(
     val y : Int
  )
 
-// PopupWindow를 관리하기 위한 Closure
-fun Context.makePopupClosure(toView: View, fnSetup : (()->Unit ) -> PopupInfo) : ()->Unit{
-    var pop : PopupWindow? = null
-    fun dismiss() = pop?.dismiss()
-    return {
-
-        val popInfo = fnSetup(::dismiss)
-
-        val width  = if(popInfo.width == 0 ){
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        } else dpToPx(popInfo.width.toFloat())
-
-        val height = if(popInfo.height == 0 ){
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        } else dpToPx(popInfo.height.toFloat())
-
-        pop = PopupWindow(
-                popInfo.v,
-                width,
-                height,
-                true
-        ).apply {
-            showAsDropDown(toView, popInfo.x, popInfo.y)
-        }
-    }
-}
-
 // makePopupClosure를 한 번에 실행
 fun Context.quickPopup(toView: View, fnSetup : (()->Unit ) -> PopupInfo){
+    fun makePopupClosure(toView: View, fnSetup : (()->Unit ) -> PopupInfo) : ()->Unit{
+        var pop : PopupWindow? = null
+        fun dismiss() = pop?.dismiss()
+        return {
+
+            val popInfo = fnSetup(::dismiss)
+
+            val width  = if(popInfo.width == 0 ){
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            } else dpToPx(popInfo.width.toFloat())
+
+            val height = if(popInfo.height == 0 ){
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            } else dpToPx(popInfo.height.toFloat())
+
+            pop = PopupWindow(
+                    popInfo.v,
+                    width,
+                    height,
+                    true
+            ).apply {
+                showAsDropDown(toView, popInfo.x, popInfo.y)
+            }
+        }
+    }
+
     makePopupClosure(toView){
         dismiss ->
         fnSetup(dismiss)
