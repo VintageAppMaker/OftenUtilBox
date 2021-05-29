@@ -25,7 +25,7 @@ class NestedScrollCustomActivity : AppCompatActivity() {
 
         val toView = findViewById<ImageView>(R.id.more)
         toView.setOnClickListener {
-            makePopupClosure(toView){
+            quickPopup(toView){
                 fnDismiss ->
                 val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val view = inflater.inflate(R.layout.popup_item, null)
@@ -38,8 +38,8 @@ class NestedScrollCustomActivity : AppCompatActivity() {
                 }
 
                 // width, height가 0이면 wrap_contents
-                PopupInfo(view, 0, 40, 30, 0)
-            }.apply { this() }
+                return@quickPopup PopupInfo(view, 0, 40, 30, 0)
+            }
         }
 
     }

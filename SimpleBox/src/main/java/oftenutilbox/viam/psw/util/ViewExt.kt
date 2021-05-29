@@ -265,3 +265,11 @@ fun Context.makePopupClosure(toView: View, fnSetup : (()->Unit ) -> PopupInfo) :
         }
     }
 }
+
+// makePopupClosure를 한 번에 실행
+fun Context.quickPopup(toView: View, fnSetup : (()->Unit ) -> PopupInfo){
+    makePopupClosure(toView){
+        dismiss ->
+        fnSetup(dismiss)
+    }.apply { this() }
+}
