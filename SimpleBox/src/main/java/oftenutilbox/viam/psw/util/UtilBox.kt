@@ -2,6 +2,7 @@ package oftenutilbox.viam.psw.util
 
 import kotlinx.coroutines.*
 import java.lang.Exception
+import java.text.NumberFormat
 import java.util.concurrent.TimeUnit
 
 // try .. catch 간편화
@@ -34,3 +35,6 @@ fun UiStopWatch(min : Int, sec : Int, fnCallBack : (Int, Int) ->Unit) : Job {
     return job
 }
 
+fun convertMoneyComma(coin : Int ) : String{
+    return NumberFormat.getIntegerInstance().format(coin)
+}

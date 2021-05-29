@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
 import com.test.psw.oftenutilbox.R
-import oftenutilbox.viam.psw.util.NewScrollView
-import oftenutilbox.viam.psw.util.PopupInfo
-import oftenutilbox.viam.psw.util.makePopupClosure
-import oftenutilbox.viam.psw.util.toast
+import oftenutilbox.viam.psw.util.*
 
 class NestedScrollCustomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +17,10 @@ class NestedScrollCustomActivity : AppCompatActivity() {
 
         findViewById<NewScrollView>(R.id.scrMain)?.apply {
             header = findViewById(R.id.stick_header)
+        }
+
+        findViewById<TextView>(R.id.txtMoney)?.apply {
+            text = convertMoneyComma(12334511)
         }
 
         val toView = findViewById<ImageView>(R.id.more)
