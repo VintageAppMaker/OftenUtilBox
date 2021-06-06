@@ -13,10 +13,15 @@ import androidx.fragment.app.FragmentManager
 class QuickDialog:  DialogFragment(){
 
     private lateinit var fnSetup : ( ()-> Unit ) -> View?
+    var fnInitUI : ( ()-> Unit ) -> View?
+        get() = fnSetup
+        set(value ){
+            fnSetup = value
+        }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //false로 설정해 주면 화면밖 혹은 뒤로가기 버튼시 다이얼로그라 dismiss 되지 않는다.
         isCancelable = true
     }
 
@@ -29,11 +34,7 @@ class QuickDialog:  DialogFragment(){
         // 이 코드를 실행하지 않으면
         // XML에서 round 처리를 했어도 적용되지 않는다.
         setBackTransparent()
-        return onSetUpUI()
-    }
-
-    private fun onSetUpUI(): View? {
-        return fnSetup(::dismiss)
+        return fnInitUI(::dismiss)
     }
 
     private fun setBackTransparent() {
@@ -45,16 +46,8 @@ class QuickDialog:  DialogFragment(){
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    fun setUI (f : ( ()-> Unit ) -> View?) {
-        this.fnSetup = f
-    }
-
     fun QShow(fm : FragmentManager, title: String, f : ( ()-> Unit ) -> View? ){
-        setUI(f)
+        fnInitUI = f
         show(fm, title)
     }
 
