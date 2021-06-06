@@ -21,6 +21,25 @@ class NestedScrollCustomActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.txtMoney)?.apply {
             text = convertMoneyComma(12334511)
+
+            val txt = this
+            setOnClickListener {
+                QuickDialog().apply {
+                    QShow(this@NestedScrollCustomActivity.supportFragmentManager, "test") {
+                            fnDismiss ->
+                        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                        val view = inflater.inflate(R.layout.dialog_quick, null)
+
+                        view?.apply{
+                            setOnClickListener {
+                                txt.text = "clicked!!"
+                                fnDismiss()
+                            }
+                        }
+                        return@QShow view
+                    }
+                }
+            }
         }
 
         val toView = findViewById<ImageView>(R.id.more)

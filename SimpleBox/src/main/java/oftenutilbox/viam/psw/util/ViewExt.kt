@@ -4,6 +4,7 @@ import android.app.Activity
 import android.appwidget.AppWidgetHost
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -272,3 +273,9 @@ fun Context.quickPopup(toView: View, fnSetup : (()->Unit ) -> PopupInfo){
         fnSetup(dismiss)
     }.apply { this() }
 }
+
+// 폰트설정
+fun TextView.setUserFont(fontName: String) {
+    setTypeface(Typeface.createFromAsset(context.assets, "fonts/$fontName.ttf"))
+}
+
