@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.test.psw.simplebox.R
 
 class QuickDialog:  DialogFragment(){
 
@@ -18,6 +19,18 @@ class QuickDialog:  DialogFragment(){
         set(value ){
             fnSetup = value
         }
+
+    private var _data : Any? = null
+    var paramData : Any?
+        get() = _data
+        set(value) {_data = value}
+
+    // Layout에서 MATCH_PARENT로 설정되어 있어야 한다.
+    // 그리고 생성자나 QShow를 호출하기 이전에 실행하면
+    // 전체 Dialog가 된다.
+    fun setEnableFullMode(){
+        setStyle(STYLE_NO_TITLE, R.style.dialog_fullscreen)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

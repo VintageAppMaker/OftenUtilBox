@@ -42,6 +42,30 @@ class NestedScrollCustomActivity : AppCompatActivity() {
             }
         }
 
+        findViewById<ImageView>(R.id.imageGreen)?.apply {
+            setOnClickListener {
+                QuickDialog().apply {
+                    // XML(dialog_quick2)은 전체화면 디자인
+                    // QShow 이전에 호출
+                    setEnableFullMode()
+                    QShow(this@NestedScrollCustomActivity.supportFragmentManager, "test2") {
+                            fnDismiss ->
+                        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                        val view = inflater.inflate(R.layout.dialog_quick2, null)
+
+                        view?.apply{
+                            setOnClickListener {
+                                fnDismiss()
+                            }
+                        }
+                        return@QShow view
+                    }
+                }
+            }
+        }
+
+
+
         val toView = findViewById<ImageView>(R.id.more)
         toView.setOnClickListener {
             quickPopup(toView){
