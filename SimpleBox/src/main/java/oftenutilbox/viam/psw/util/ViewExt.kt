@@ -16,6 +16,7 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.test.psw.simplebox.R
 
@@ -278,4 +279,17 @@ fun Context.quickPopup(toView: View, fnSetup : (()->Unit ) -> PopupInfo){
 fun TextView.setUserFont(fontName: String) {
     setTypeface(Typeface.createFromAsset(context.assets, "fonts/$fontName.ttf"))
 }
+
+// 하단 시스템 바 색상변경
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+fun Activity.setBottomSystemBarColor(c : Int){
+    getWindow().setNavigationBarColor(c)
+}
+
+// 하단 시스템 바 색상변경
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+fun DialogFragment.setBottomSystemBarColor(c : Int){
+    dialog?.getWindow()?.setNavigationBarColor(c)
+}
+
 

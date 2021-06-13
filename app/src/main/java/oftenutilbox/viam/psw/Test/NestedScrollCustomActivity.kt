@@ -1,6 +1,8 @@
 package oftenutilbox.viam.psw.Test
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +16,9 @@ class NestedScrollCustomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nested_scroll_custom)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setBottomSystemBarColor(Color.parseColor("#FFFF33"))
+        }
 
         findViewById<NewScrollView>(R.id.scrMain)?.apply {
             header = findViewById(R.id.stick_header)
@@ -25,6 +30,7 @@ class NestedScrollCustomActivity : AppCompatActivity() {
             val txt = this
             setOnClickListener {
                 QuickDialog().apply {
+
                     QShow(this@NestedScrollCustomActivity.supportFragmentManager, "test") {
                             fnDismiss ->
                         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
