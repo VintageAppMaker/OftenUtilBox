@@ -303,7 +303,6 @@ fun View.showAndHide(time : Long = 1500){
     )
 }
 
-// 비트모빈 player가 2개 이상 실행되면 안되기에
 // 글로벌 영역에 finish 코드를 보관한다.
 var fnPlayerActivityClose : () -> Unit = {}
 fun Activity.regiterOnlyOnePlayer(){
