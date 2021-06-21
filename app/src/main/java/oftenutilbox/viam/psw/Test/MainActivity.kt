@@ -31,9 +31,15 @@ class MainActivity : AppCompatActivity() {
         testBottomMessage()
         
         testNestedScroll()
-
+        testAlphaAnimation()
     }
 
+    private fun testAlphaAnimation() {
+        val btnAlphaAni = findViewById<Button>(R.id.btnAlphaAni)
+        btnAlphaAni.setOnClickListener {
+            btnAlphaAni.showAndHide(3000)
+        }
+    }
     private fun testNestedScroll() {
         val btnNestedScroll = findViewById<Button>(R.id.btnNestedScroll)
         btnNestedScroll.setOnClickListener {

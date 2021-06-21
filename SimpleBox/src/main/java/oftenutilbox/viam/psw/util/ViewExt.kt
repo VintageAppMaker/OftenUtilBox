@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.animation.AlphaAnimation
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -292,4 +293,22 @@ fun DialogFragment.setBottomSystemBarColor(c : Int){
     dialog?.getWindow()?.setNavigationBarColor(c)
 }
 
+fun View.showAndHide(time : Long = 1500){
+    visibility = View.VISIBLE
+    startAnimation(
+        AlphaAnimation(1.0f, 0.0f).apply {
+            duration = time
+            fillAfter = true
+        }
+    )
+}
 
+// 비트모빈 player가 2개 이상 실행되면 안되기에
+// 글로벌 영역에 finish 코드를 보관한다.
+var fnPlayerActivityClose : () -> Unit = {}
+fun Activity.regiterOnlyOnePlayer(){
+    // 매우 위험한 시도. 새로운 액티비티 실행 시,
+    // 이전 Activity를 종료한다.
+    fnPlayerActivityClose()
+    fnPlayerActivityClose = {finish()}
+}
