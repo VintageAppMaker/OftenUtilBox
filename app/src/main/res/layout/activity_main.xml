@@ -108,6 +108,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:text="BottomDialg"
+                android:layout_gravity="center"
+                android:id="@+id/btnBottomDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
     </ScrollView>

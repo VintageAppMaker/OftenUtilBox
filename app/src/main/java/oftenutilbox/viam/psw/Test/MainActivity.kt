@@ -1,9 +1,11 @@
 package oftenutilbox.viam.psw.Test
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
@@ -32,6 +34,24 @@ class MainActivity : AppCompatActivity() {
         
         testNestedScroll()
         testAlphaAnimation()
+        testBottomDialog()
+    }
+
+    private fun testBottomDialog() {
+        val btnBottomDialog = findViewById<Button>(R.id.btnBottomDialog)
+        btnBottomDialog.setOnClickListener {
+            QuickBottomDialog().apply {
+                QShow(this@MainActivity.supportFragmentManager, "", {
+
+                    fnDismiss ->
+                    val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                    val view = inflater.inflate(R.layout.dialog_quick, null)
+
+                    return@QShow view
+
+                })
+            }
+        }
     }
 
     private fun testAlphaAnimation() {
