@@ -11,6 +11,8 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.test.psw.oftenutilbox.R
+import com.test.psw.oftenutilbox.databinding.Example1Binding
+import com.test.psw.oftenutilbox.databinding.Example2Binding
 import kotlinx.coroutines.Job
 import oftenutilbox.viam.psw.util.*
 
@@ -19,9 +21,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        testSystemOveray()
+        // Systembar 침범
+        setOverSystemMenu()
+
+        findViewById<Button>(R.id.btnSystemOverlay)?.apply {
+            setOnClickListener {
+                testViewSize()
+            }
+        }
+
+        findViewById<Button>(R.id.btnViewRotation)?.apply {
+            setOnClickListener {
+                testViewRotation()
+            }
+        }
+
         testErrorHandler()
-        testViewSize()
         testPref()
         testCustomSpinner()
 
@@ -35,7 +50,35 @@ class MainActivity : AppCompatActivity() {
         testNestedScroll()
         testAlphaAnimation()
         testBottomDialog()
+        
     }
+
+    private fun testViewRotation() {
+        TestExampleActivity.launch(this, { setContent ->
+            val binding: Example2Binding
+            binding = Example2Binding.inflate(layoutInflater)
+            setContent(binding.root)
+        })
+    }
+
+    private fun testViewSize() {
+
+        TestExampleActivity.launch(this, { setContent ->
+            val binding: Example1Binding
+            binding = Example1Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            binding.apply {
+                message.setWidthDp(300)
+                message.setHeightDp(40)
+                message.setMarginDp(10F, 5F, 1F, 1F)
+                message.setPaddingDp(30F, 10F, 10F, 10F)
+            }
+
+        })
+
+    }
+
 
     private fun testBottomDialog() {
         val btnBottomDialog = findViewById<Button>(R.id.btnBottomDialog)
@@ -141,17 +184,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun testViewSize() {
-        val txtHello = findViewById<TextView>(R.id.message)
-        txtHello.setWidthDp(300)
-        txtHello.setHeightDp(40)
-        txtHello.setMarginDp(10F, 5F, 1F, 1F)
-        txtHello.setPaddingDp(30F, 10F, 10F, 10F)
-    }
 
-    private fun testSystemOveray() {
-        setOverSystemMenu()
-    }
 
     private fun testErrorHandler() {
         var name : String? = null
