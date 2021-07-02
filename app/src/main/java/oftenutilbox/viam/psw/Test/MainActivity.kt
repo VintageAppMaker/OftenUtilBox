@@ -3,6 +3,8 @@ package oftenutilbox.viam.psw.Test
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,10 +23,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Systembar 침범
-        setOverSystemMenu()
+        testSystemNavigation()
 
-        findViewById<Button>(R.id.btnSystemOverlay)?.apply {
+        findViewById<Button>(R.id.btnViewResize)?.apply {
             setOnClickListener {
                 testViewSize()
             }
@@ -50,11 +51,21 @@ class MainActivity : AppCompatActivity() {
         testNestedScroll()
         testAlphaAnimation()
         testBottomDialog()
-        
+
+    }
+
+    private fun testSystemNavigation() {
+        // Systembar 침범
+        setOverSystemMenu()
+
+        // 하단 네비게이션 메뉴 색상변경
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setBottomSystemBarColor(Color.parseColor("#FF99AA"))
+        }
     }
 
     private fun testViewRotation() {
-        TestExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, { setContent ->
             val binding: Example2Binding
             binding = Example2Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -63,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun testViewSize() {
 
-        TestExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, { setContent ->
             val binding: Example1Binding
             binding = Example1Binding.inflate(layoutInflater)
             setContent(binding.root)

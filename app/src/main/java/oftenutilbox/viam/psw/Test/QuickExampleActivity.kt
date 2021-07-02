@@ -5,14 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.test.psw.oftenutilbox.R
 
-class TestExampleActivity : AppCompatActivity() {
+class QuickExampleActivity : AppCompatActivity() {
     companion object{
         var fnSetup : ( (View)-> Unit )-> Unit = {}
         fun launch(ctx : Context, fnSetup : ( (View)-> Unit )-> Unit ){
-            val intent = Intent(ctx, TestExampleActivity::class.java).apply {
-                TestExampleActivity.fnSetup = fnSetup
+            Intent(ctx, QuickExampleActivity::class.java).apply {
+                QuickExampleActivity.fnSetup = fnSetup
                 ctx.startActivity(this)
             }
         }

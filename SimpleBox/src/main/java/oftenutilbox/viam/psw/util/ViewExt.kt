@@ -94,14 +94,6 @@ inline fun <reified T : ViewGroup.LayoutParams> View.layoutInfo(fnCode: T.() -> 
     if (layoutParams is T) fnCode(layoutParams as T)
 }
 
-fun View.setHeight(context: Context, value: Int) {
-    val lp = layoutParams
-    lp?.let {
-        lp.height = dpToPx(value.toFloat())
-        layoutParams = lp
-    }
-}
-
 // 커스텀 스피너
 fun Spinner.setCustomAdapter(context: Context, lst: MutableList<String>, unselectedTitle: String = "", defaultHeight: Int = 40){
     class CustomSpnAdapter : BaseAdapter {
@@ -141,7 +133,7 @@ fun Spinner.setCustomAdapter(context: Context, lst: MutableList<String>, unselec
 
                     background = context.getDrawable(R.drawable.bg_spinner)
                     if(p2.selectedItemPosition < 0 ){
-                        p2.setHeight(context, defaultHeight)
+                        p2.setHeightDp(defaultHeight)
                         setTextColor(Color.parseColor("#626466"))
                         text = unselectedTitle
                     }
@@ -152,7 +144,7 @@ fun Spinner.setCustomAdapter(context: Context, lst: MutableList<String>, unselec
     }
 
     adapter = CustomSpnAdapter(context, lst, unselectedTitle)
-    setHeight(context, defaultHeight)
+    setHeightDp(defaultHeight)
     this.setSelection(-1)
 }
 
