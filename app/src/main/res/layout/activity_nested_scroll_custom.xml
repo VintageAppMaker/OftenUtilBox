@@ -51,16 +51,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:text="👇 아래를 누르세요(DialogFragment test)"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
                 android:id="@+id/txtMoney"
                 android:text="123456"
                 android:gravity="center"
                 android:textSize="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:text="👇 아래를 누르세요(PopUp test)"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:id="@+id/more"
                 android:src="@android:drawable/ic_menu_more"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="👇 아래를 누르세요(DialogFragment full test)"
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <ImageView
                 android:id="@+id/imageGreen"

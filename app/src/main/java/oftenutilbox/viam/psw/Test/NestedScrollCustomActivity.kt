@@ -16,6 +16,7 @@ class NestedScrollCustomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nested_scroll_custom)
 
+        // 하단 네비게이션 메뉴 색상변경
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setBottomSystemBarColor(Color.parseColor("#FFFF33"))
         }
