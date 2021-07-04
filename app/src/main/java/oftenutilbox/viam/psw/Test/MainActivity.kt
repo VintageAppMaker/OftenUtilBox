@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             showBottomMessage("1\n1\n1\n1\n1\n" +
                     "1\n" +
                     "1\n" +
-                    "1\n", height = 100f)
+                    "1\n", height = 300f)
             showBottomMessage("2")
             showBottomMessage("3 👨‍🎓")
         }
