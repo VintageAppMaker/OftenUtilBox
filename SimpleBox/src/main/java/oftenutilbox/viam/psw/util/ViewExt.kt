@@ -18,6 +18,8 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.test.psw.simplebox.R
 
@@ -32,7 +34,7 @@ fun Context?.toast(s: String){
 // style 파일에 다음을 적용하면 된다.
 //        <item name="android:windowTranslucentStatus">true</item>
 //        <item name="android:windowTranslucentNavigation">false</item>
-fun Activity.setOverSystemMenu() {
+fun Activity.setOverSystemMenu(backCololor : Int = 0 ) {
     fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window
         val winParams = win.attributes
@@ -52,7 +54,7 @@ fun Activity.setOverSystemMenu() {
     }
     if (Build.VERSION.SDK_INT >= 21) {
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-        window.statusBarColor = Color.TRANSPARENT
+        window.statusBarColor = if (backCololor == 0 ) Color.TRANSPARENT else backCololor
     }
 }
 
@@ -302,4 +304,28 @@ fun Activity.regiterOnlyOnePlayer(){
     // 이전 Activity를 종료한다.
     fnPlayerActivityClose()
     fnPlayerActivityClose = {finish()}
+}
+
+// 레퍼런스 :
+// https://stackoverflow.com/questions/26370289/snappy-scrolling-in-recyclerview/33774983
+fun RecyclerView.getScrollDistanceOfColumnClosestToLeft(): Int {
+    val manager = layoutManager as LinearLayoutManager?
+    val firstVisibleColumnViewHolder = findViewHolderForAdapterPosition(
+        manager!!.findFirstVisibleItemPosition()
+    ) ?: return 0
+    val columnWidth = firstVisibleColumnViewHolder.itemView.measuredWidth
+    val left = firstVisibleColumnViewHolder.itemView.left
+    val absoluteLeft = Math.abs(left)
+    return if (absoluteLeft <= columnWidth / 2) left else columnWidth - absoluteLeft
+}
+
+fun RecyclerView.setMagneticMove(){
+    addOnScrollListener(object: RecyclerView.OnScrollListener(){
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            val moveTo = getScrollDistanceOfColumnClosestToLeft()
+            if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                recyclerView.smoothScrollBy(moveTo, 0)
+            }
+        }
+    })
 }
