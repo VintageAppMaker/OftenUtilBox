@@ -12,10 +12,17 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.test.psw.oftenutilbox.R
 import com.test.psw.oftenutilbox.databinding.Example1Binding
 import com.test.psw.oftenutilbox.databinding.Example2Binding
+import com.test.psw.oftenutilbox.databinding.Example3Binding
+import com.test.psw.oftenutilbox.databinding.Example4Binding
 import kotlinx.coroutines.Job
+import oftenutilbox.viam.psw.Test.adapter.Box
+import oftenutilbox.viam.psw.Test.adapter.MagneticAdapter
+import oftenutilbox.viam.psw.Test.adapter.SimpleData
 import oftenutilbox.viam.psw.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +41,18 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnViewRotation)?.apply {
             setOnClickListener {
                 testViewRotation()
+            }
+        }
+
+        findViewById<Button>(R.id.btnMagneticRecyclerView)?.apply {
+            setOnClickListener {
+                testMagneticRecyclerView()
+            }
+        }
+
+        findViewById<Button>(R.id.btnAppBarlayout2Lines)?.apply {
+            setOnClickListener {
+                testAppbarlayout2Lines()
             }
         }
 
@@ -62,6 +81,39 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setBottomSystemBarColor(Color.parseColor("#FF99AA"))
         }
+    }
+
+    private fun testAppbarlayout2Lines() {
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: Example4Binding
+            binding = Example4Binding.inflate(layoutInflater)
+            setContent(binding.root)
+        })
+    }
+
+    private fun testMagneticRecyclerView() {
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: Example3Binding
+            binding = Example3Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            binding.apply {
+                val lst = mutableListOf<SimpleData>()
+                val colortable = listOf(Color.RED, Color.GRAY, Color.BLUE, Color.GREEN, Color.WHITE)
+                (0..30).forEach {
+                    val item = Box(color = colortable.get( it % colortable.size))
+                    lst.add( item as SimpleData )
+                }
+
+                recycler.setMagneticMove()
+
+                val manager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                recycler.layoutManager = manager
+                val adt = MagneticAdapter(lst, applicationContext)
+                recycler.adapter = adt
+            }
+
+        })
     }
 
     private fun testViewRotation() {

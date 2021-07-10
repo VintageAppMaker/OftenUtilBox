@@ -158,6 +158,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <View
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="#676767"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="Magnetic RecyclerView"
+                android:layout_gravity="center"
+                android:id="@+id/btnMagneticRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="AppBarlayout title 2 lines"
+                android:layout_gravity="center"
+                android:id="@+id/btnAppBarlayout2Lines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <View
                 android:layout_marginTop="4dp"

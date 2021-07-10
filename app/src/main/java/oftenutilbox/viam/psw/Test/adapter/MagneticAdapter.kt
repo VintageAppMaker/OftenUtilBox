@@ -1,0 +1,59 @@
+package oftenutilbox.viam.psw.Test.adapter
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.test.psw.oftenutilbox.R
+
+sealed class SimpleData
+data class Box(
+    var color        : Int
+) : SimpleData()
+
+class MagneticAdapter(val items : List<SimpleData>, val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    var mItems : MutableList <SimpleData> = items.toMutableList()
+
+    override fun getItemCount(): Int {
+        return mItems.size
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType){
+            TYPE_ONE   -> {boxViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false))}
+            else -> {boxViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false))}
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        when (holder.itemViewType){
+            TYPE_ONE -> { (holder as boxViewHolder).apply {
+                var item = mItems.get(position) as Box
+                bind(context,  item)
+            }}
+        }
+
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (mItems.get(position)){
+            is Box -> {
+                TYPE_ONE
+            }
+        }
+    }
+
+    companion object {
+        private const val TYPE_ONE   = 0
+    }
+}
+
+class boxViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    val box = view.findViewById<View>(R.id.colorBox)
+    fun bind(context : Context, item : Box){
+        box.setBackgroundColor(item.color)
+    }
+}

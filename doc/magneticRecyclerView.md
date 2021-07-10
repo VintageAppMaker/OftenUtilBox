@@ -35,3 +35,31 @@ fun RecyclerView.setMagneticMove(){
 ~~~
 
 사용법은 recycler를 생성 후, setMagneticMove를 호출해주기만 하면된다.
+
+MainActivity.kt
+~~~kotlin
+    private fun testMagneticRecyclerView() {
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: Example3Binding
+            binding = Example3Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            binding.apply {
+                val lst = mutableListOf<SimpleData>()
+                val colortable = listOf(Color.RED, Color.GRAY, Color.BLUE, Color.GREEN, Color.WHITE)
+                (0..30).forEach {
+                    val item = Box(color = colortable.get( it % colortable.size))
+                    lst.add( item as SimpleData )
+                }
+
+                recycler.setMagneticMove()
+
+                val manager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                recycler.layoutManager = manager
+                val adt = MagneticAdapter(lst, applicationContext)
+                recycler.adapter = adt
+            }
+
+        })
+    }
+~~~
