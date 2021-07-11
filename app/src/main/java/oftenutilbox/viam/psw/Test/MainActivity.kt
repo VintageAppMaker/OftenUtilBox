@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                 val lst = mutableListOf<SimpleData>()
                 val colortable = listOf(Color.RED, Color.GRAY, Color.BLUE, Color.GREEN, Color.WHITE)
                 (0..30).forEach {
-                    val item = Box(color = colortable.get( it % colortable.size))
+                    val item = Box(color = colortable.get( it % colortable.size), alpha = it * 0.1f % 1.0f )
                     lst.add( item as SimpleData )
                 }
 

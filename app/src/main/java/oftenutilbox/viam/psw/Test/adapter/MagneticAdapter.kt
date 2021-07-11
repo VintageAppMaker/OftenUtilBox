@@ -1,15 +1,18 @@
 package oftenutilbox.viam.psw.Test.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.test.psw.oftenutilbox.R
+import kotlin.random.Random
 
 sealed class SimpleData
 data class Box(
-    var color        : Int
+    var color        : Int,
+    var alpha        : Float
 ) : SimpleData()
 
 class MagneticAdapter(val items : List<SimpleData>, val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -53,7 +56,11 @@ class MagneticAdapter(val items : List<SimpleData>, val context: Context) : Recy
 
 class boxViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val box = view.findViewById<View>(R.id.colorBox)
+    val dimmed = view.findViewById<View>(R.id.dimmed)
     fun bind(context : Context, item : Box){
         box.setBackgroundColor(item.color)
+
+        dimmed.setBackgroundColor(Color.BLACK)
+        dimmed.alpha = item.alpha
     }
 }
