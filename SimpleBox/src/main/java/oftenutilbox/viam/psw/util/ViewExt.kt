@@ -319,12 +319,12 @@ fun RecyclerView.getScrollDistanceOfColumnClosestToLeft(): Int {
     return if (absoluteLeft <= columnWidth / 2) left else columnWidth - absoluteLeft
 }
 
-fun RecyclerView.setMagneticMove(){
+fun RecyclerView.setMagneticMove(nMore : Int = 0){
     addOnScrollListener(object: RecyclerView.OnScrollListener(){
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             val moveTo = getScrollDistanceOfColumnClosestToLeft()
             if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                recyclerView.smoothScrollBy(moveTo, 0)
+                recyclerView.smoothScrollBy(moveTo + nMore, 0)
             }
         }
     })

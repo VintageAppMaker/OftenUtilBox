@@ -105,6 +105,8 @@ class MainActivity : AppCompatActivity() {
                     lst.add( item as SimpleData )
                 }
 
+                // 좌측에서 이동
+                //recycler.setMagneticMove(dpToPx(60f) * -1)
                 recycler.setMagneticMove()
 
                 val manager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
