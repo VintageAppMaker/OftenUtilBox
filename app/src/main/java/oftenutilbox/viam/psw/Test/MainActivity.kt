@@ -9,16 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.psw.oftenutilbox.R
-import com.test.psw.oftenutilbox.databinding.Example1Binding
-import com.test.psw.oftenutilbox.databinding.Example2Binding
-import com.test.psw.oftenutilbox.databinding.Example3Binding
-import com.test.psw.oftenutilbox.databinding.Example4Binding
+import com.test.psw.oftenutilbox.databinding.*
 import kotlinx.coroutines.Job
 import oftenutilbox.viam.psw.Test.adapter.Box
 import oftenutilbox.viam.psw.Test.adapter.MagneticAdapter
@@ -56,6 +54,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        findViewById<Button>(R.id.btnWeightChange)?.apply {
+            setOnClickListener {
+                testWeightChange()
+            }
+        }
+
         testErrorHandler()
         testPref()
         testCustomSpinner()
@@ -71,6 +75,23 @@ class MainActivity : AppCompatActivity() {
         testAlphaAnimation()
         testBottomDialog()
 
+    }
+
+    private fun testWeightChange() {
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: Example5Binding
+            binding = Example5Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            binding.apply {
+                // 부모가 Linearlayout이고 weightsum을 지정하고 있어야 한다.
+
+                // 3:7이었던 것을 view2로 모두 채워버린다.
+                (view1.layoutParams as LinearLayout.LayoutParams).weight = 0.0f
+                (view2.layoutParams as LinearLayout.LayoutParams).weight = 1.0f
+            }
+
+        })
     }
 
     private fun testSystemNavigation() {

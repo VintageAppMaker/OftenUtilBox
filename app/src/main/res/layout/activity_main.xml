@@ -183,6 +183,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="Linearlayout weight change"
+                android:layout_gravity="center"
+                android:id="@+id/btnWeightChange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <View
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
