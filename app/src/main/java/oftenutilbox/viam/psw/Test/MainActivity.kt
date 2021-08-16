@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.psw.oftenutilbox.R
@@ -29,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         testSystemNavigation()
+
+        findViewById<Button>(R.id.btnViewModelTimer)?.apply {
+            setOnClickListener {
+                testViewModelTimer()
+            }
+        }
 
         findViewById<Button>(R.id.btnViewResize)?.apply {
             setOnClickListener {
@@ -102,6 +109,25 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setBottomSystemBarColor(Color.parseColor("#FF99AA"))
         }
+    }
+
+    private fun testViewModelTimer() {
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: Example6Binding
+            binding = Example6Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            var count = 0
+            val viewModel = ViewModelProvider(this@MainActivity).get(TimerViewModel::class.java)
+            val timerAction : () -> Unit = { binding.txtMessage.text = "${count++}" }
+            viewModel.setInterval(500)
+            viewModel.timerStart(timerAction)
+            binding.txtMessage.setOnClickListener {
+                viewModel.apply {
+                    if ( isRun ) timerStop() else timerStart(timerAction)
+                }
+            }
+        })
     }
 
     private fun testAppbarlayout2Lines() {

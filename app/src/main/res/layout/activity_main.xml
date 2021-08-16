@@ -199,6 +199,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
 
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="vieModel을 이용한 타이머"
+                android:layout_gravity="center"
+                android:id="@+id/btnViewModelTimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
 
