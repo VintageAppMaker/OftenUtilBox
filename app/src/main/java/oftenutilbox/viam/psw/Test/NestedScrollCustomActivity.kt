@@ -92,5 +92,18 @@ class NestedScrollCustomActivity : AppCompatActivity() {
             }
         }
 
+        val txtLineCount = findViewById<TextView>(R.id.txtLineCount)
+        txtLineCount.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
+            // lineCount는 레이아웃이 완료된 시점에서 재대로 동작한다.
+            val cnt = txtLineCount.lineCount
+            val LIMITLINE= 5
+            if (cnt > LIMITLINE) {
+                val s  = txtLineCount.text
+                var s2 = ""
+                s.split("\n").forEachIndexed{ index, data -> if (index < LIMITLINE) s2 += "${data}\n"  }
+                txtLineCount.text = s2
+            }
+        }
+
     }
 }

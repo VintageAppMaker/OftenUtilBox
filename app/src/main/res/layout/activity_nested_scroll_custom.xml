@@ -90,6 +90,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"/>
 
+            <TextView
+                android:id="@+id/txtLineCount"
+                android:text="5줄 줄임표..1\n2\n3\n4\n5\n6\n7\n8\n"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
     </oftenutilbox.viam.psw.util.NewScrollView>
