@@ -31,41 +31,12 @@ class MainActivity : AppCompatActivity() {
 
         testSystemNavigation()
 
-        findViewById<Button>(R.id.btnViewModelTimer)?.apply {
-            setOnClickListener {
-                testViewModelTimer()
-            }
-        }
-
-        findViewById<Button>(R.id.btnViewResize)?.apply {
-            setOnClickListener {
-                testViewSize()
-            }
-        }
-
-        findViewById<Button>(R.id.btnViewRotation)?.apply {
-            setOnClickListener {
-                testViewRotation()
-            }
-        }
-
-        findViewById<Button>(R.id.btnMagneticRecyclerView)?.apply {
-            setOnClickListener {
-                testMagneticRecyclerView()
-            }
-        }
-
-        findViewById<Button>(R.id.btnAppBarlayout2Lines)?.apply {
-            setOnClickListener {
-                testAppbarlayout2Lines()
-            }
-        }
-
-        findViewById<Button>(R.id.btnWeightChange)?.apply {
-            setOnClickListener {
-                testWeightChange()
-            }
-        }
+        setButtonAction(R.id.btnViewModelTimer, {testViewModelTimer()})
+        setButtonAction(R.id.btnViewResize, {testViewSize()})
+        setButtonAction(R.id.btnViewRotation, {testViewRotation()})
+        setButtonAction(R.id.btnMagneticRecyclerView, {testMagneticRecyclerView()})
+        setButtonAction(R.id.btnAppBarlayout2Lines, {testAppbarlayout2Lines()})
+        setButtonAction(R.id.btnWeightChange, {testWeightChange()})
 
         testErrorHandler()
         testPref()
@@ -82,6 +53,14 @@ class MainActivity : AppCompatActivity() {
         testAlphaAnimation()
         testBottomDialog()
 
+    }
+
+    private fun setButtonAction(resID : Int, fnProcess : () ->Unit){
+        findViewById<Button>(resID)?.apply {
+            setOnClickListener {
+                fnProcess()
+            }
+        }
     }
 
     private fun testWeightChange() {
