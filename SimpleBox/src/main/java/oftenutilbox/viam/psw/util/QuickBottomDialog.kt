@@ -35,6 +35,14 @@ open class QuickBottomDialog:  BottomSheetDialogFragment(){
             setOnShowListener {
                 val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
                 bottomSheet.setBackgroundResource(android.R.color.transparent)
+
+                val behavior = BottomSheetBehavior.from(bottomSheet!!)
+
+                // 아래와 같이하면 Drag를 불가능하게 한다.
+                behavior.isDraggable = false
+
+                //behavior.state = BottomSheetBehavior.STATE_EXPANDED
+
             }
         } ) as BottomSheetDialog
         return dlg
