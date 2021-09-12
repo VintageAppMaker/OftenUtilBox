@@ -18,10 +18,19 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.test.psw.simplebox.R
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+
+
+
 
 
 // Toast 간소화
@@ -326,6 +335,36 @@ fun RecyclerView.setMagneticMove(nMore : Int = 0){
             if(newState == RecyclerView.SCROLL_STATE_IDLE){
                 recyclerView.smoothScrollBy(moveTo + nMore, 0)
             }
+        }
+    })
+}
+
+fun ViewPager.attachFragments(fm : FragmentManager, lst : List<Fragment>, fnOnSelected : (Int)->Unit){
+    var fragmentList : List<Fragment> = lst
+    class FragmentAdapter (fm : FragmentManager): FragmentPagerAdapter(fm) {
+        override fun getItem(position: Int): Fragment {
+            return fragmentList[position]
+        }
+
+        override fun getCount(): Int = fragmentList.size
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return ""
+        }
+    }
+
+    this.adapter = FragmentAdapter(fm)
+    addOnPageChangeListener(object : OnPageChangeListener {
+        override fun onPageScrollStateChanged(state: Int) {}
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+        }
+
+        override fun onPageSelected(position: Int) {
+            fnOnSelected(position)
         }
     })
 }
