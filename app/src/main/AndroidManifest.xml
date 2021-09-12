@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OftenUtilBox">
+        <activity
+            android:name="oftenutilbox.viam.psw.Test.ViewPagerTestActivity"
+            android:exported="true" />
         <activity android:name="oftenutilbox.viam.psw.Test.NestedScrollCustomActivity" />
-        <activity android:name="oftenutilbox.viam.psw.Test.QuickExampleActivity" ></activity>
+        <activity android:name="oftenutilbox.viam.psw.Test.QuickExampleActivity" />
         <activity android:name="oftenutilbox.viam.psw.Test.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

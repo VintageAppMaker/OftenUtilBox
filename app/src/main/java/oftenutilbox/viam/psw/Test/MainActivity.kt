@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnMagneticRecyclerView, {testMagneticRecyclerView()})
         setButtonAction(R.id.btnAppBarlayout2Lines, {testAppbarlayout2Lines()})
         setButtonAction(R.id.btnWeightChange, {testWeightChange()})
+        setButtonAction(R.id.btnViewPager, {testViewPager()})
+
 
         testErrorHandler()
         testPref()
@@ -53,6 +55,12 @@ class MainActivity : AppCompatActivity() {
         testAlphaAnimation()
         testBottomDialog()
 
+    }
+
+    private fun testViewPager() {
+        Intent(this, ViewPagerTestActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
     private fun setButtonAction(resID : Int, fnProcess : () ->Unit){

@@ -23,8 +23,10 @@
 
     <oftenutilbox.viam.psw.util.NewScrollView
         android:id="@+id/scrMain"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
@@ -95,8 +97,7 @@
                 android:text="5줄 줄임표..1\n2\n3\n4\n5\n6\n7\n8\n"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
     </oftenutilbox.viam.psw.util.NewScrollView>
