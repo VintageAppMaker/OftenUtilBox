@@ -66,9 +66,9 @@
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vPager"
-                android:layout_height="1300dp"
                 android:layout_width="match_parent"
-                />
+                android:layout_height="wrap_content" />
+
 
         </LinearLayout>
     </oftenutilbox.viam.psw.util.NewScrollView>

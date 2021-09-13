@@ -5,10 +5,20 @@
     tools:context="oftenutilbox.viam.psw.Test.BlankFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
+    <oftenutilbox.viam.psw.util.NewScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:background="#FF00FF"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="1300dp"
+                android:text="@string/hello_blank_fragment" />
+        </LinearLayout>
+    </oftenutilbox.viam.psw.util.NewScrollView>
 
 </FrameLayout>
