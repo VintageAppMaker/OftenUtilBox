@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OftenUtilBox">
         <activity
+            android:name="oftenutilbox.viam.psw.Test.WebViewActivity"
+            android:exported="true" />
+        <activity
             android:name="oftenutilbox.viam.psw.Test.ViewPagerTestActivity"
             android:exported="true" />
         <activity android:name="oftenutilbox.viam.psw.Test.NestedScrollCustomActivity" />
