@@ -38,7 +38,7 @@ class WebViewActivity : AppCompatActivity() {
                     allowFileAccess = false
                     allowUniversalAccessFromFileURLs = false
                     allowFileAccessFromFileURLs = false
-                    domStorageEnabled = true // Viam 2021-09-15 오후 3:29 : 매우중요함. JQuery를 위해서 반드시 필요함.
+                    domStorageEnabled = true
                 }
 
                 addJavascriptInterface(AndroidJavascriptInterface(), "android")

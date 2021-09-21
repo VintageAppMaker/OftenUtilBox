@@ -1,6 +1,12 @@
 package oftenutilbox.viam.psw.util
 
+import android.content.Context
+import android.content.res.Resources
+import android.graphics.drawable.BitmapDrawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.coroutines.*
+import okhttp3.Dispatcher
 import java.lang.Exception
 import java.text.NumberFormat
 import java.util.concurrent.TimeUnit
@@ -37,4 +43,28 @@ fun UiStopWatch(min : Int, sec : Int, fnCallBack : (Int, Int) ->Unit) : Job {
 
 fun convertMoneyComma(coin : Int ) : String{
     return NumberFormat.getIntegerInstance().format(coin)
+}
+
+object ImageTool{
+    fun getNetworkDrawable(ctx : Context, sUrl : String, fnSetting : (BitmapDrawable?) -> Unit = {} ){
+        var job = Job()
+        CoroutineScope(job).launch {
+            try{
+                val bmp = Glide
+                    .with(ctx)
+                    .asBitmap()
+                    .apply(RequestOptions.circleCropTransform())
+                    .load(sUrl)
+                    .into(100, 100)
+                    .get()
+                val res: Resources = ctx.resources
+
+                fnSetting(BitmapDrawable(res, bmp))
+            } catch ( e: Exception){
+                e.printStackTrace()
+                job.cancel()
+            }
+        }
+    }
+
 }

@@ -8,10 +8,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Spinner
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +19,14 @@ import oftenutilbox.viam.psw.Test.adapter.Box
 import oftenutilbox.viam.psw.Test.adapter.MagneticAdapter
 import oftenutilbox.viam.psw.Test.adapter.SimpleData
 import oftenutilbox.viam.psw.util.*
+import com.bumptech.glide.Glide
+
+import android.graphics.drawable.Drawable
+import android.view.View
+import android.widget.*
+import com.bumptech.glide.request.target.Target
+import org.w3c.dom.Text
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +59,25 @@ class MainActivity : AppCompatActivity() {
         testAlphaAnimation()
         testBottomDialog()
 
+        // textView의 백그라운드를 Glide를 통해 설정함.
+        ImageTool.getNetworkDrawable(this@MainActivity,
+            "https://www.google.com/logos/doodles/2021/chuseok-2021-6753651837109089.2-l.webp",
+            { img->
+                runOnUiThread {
+                    findViewById<TextView>(R.id.txtBackgroudText).apply {
+                        background = img
+                    }
+                }
+            }
+        )
+
+        // 일단 GlideTest
+        val target: ImageView = findViewById<View>(R.id.imgTest) as ImageView
+        val url = "https://www.google.com/logos/doodles/2021/chuseok-2021-6753651837109089.2-l.webp"
+        Glide.with(this)
+            .load(url)
+            .into(target)
+
     }
 
     private fun testViewPager() {
@@ -65,6 +88,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setButtonAction(resID : Int, fnProcess : () ->Unit){
         findViewById<Button>(resID)?.apply {
+
             setOnClickListener {
                 fnProcess()
             }
