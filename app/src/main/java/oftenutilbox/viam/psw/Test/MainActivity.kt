@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         // textView의 백그라운드를 Glide를 통해 설정함.
         ImageTool.getNetworkDrawable(this@MainActivity,
             "https://avatars.githubusercontent.com/u/32689599?s=200&v=4",
-            { img->
+            {   img->
                 runOnUiThread {
                     findViewById<TextView>(R.id.txtBackgroudText).apply {
                         background = img
