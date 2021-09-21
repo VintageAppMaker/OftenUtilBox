@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8BC34A"
     android:padding="10dp"
     tools:context="oftenutilbox.viam.psw.Test.MainActivity">
 
@@ -217,12 +218,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="Webview Test 예제"
+                android:layout_gravity="center"
+                android:id="@+id/btnWebView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <ImageView
                 android:id="@+id/imgTest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:layout_margin="40dp"
                 android:textColor="#FFFFFF"
                 android:textSize="11dp"
                 android:gravity="center"
@@ -230,8 +241,6 @@
                 android:id="@+id/txtBackgroudText"
                 android:layout_width="100dp"
                 android:layout_height="100dp"/>
-
-
 
         </LinearLayout>
 

@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnAppBarlayout2Lines, {testAppbarlayout2Lines()})
         setButtonAction(R.id.btnWeightChange, {testWeightChange()})
         setButtonAction(R.id.btnViewPager, {testViewPager()})
-
+        setButtonAction(R.id.btnWebView, {testWebView()})
 
         testErrorHandler()
         testPref()
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         // textView의 백그라운드를 Glide를 통해 설정함.
         ImageTool.getNetworkDrawable(this@MainActivity,
-            "https://www.google.com/logos/doodles/2021/chuseok-2021-6753651837109089.2-l.webp",
+            "https://avatars.githubusercontent.com/u/32689599?s=200&v=4",
             { img->
                 runOnUiThread {
                     findViewById<TextView>(R.id.txtBackgroudText).apply {
@@ -80,6 +80,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun testWebView() {
+        Intent(this, WebViewActivity::class.java).apply {
+            startActivity(this)
+        }
+    }
     private fun testViewPager() {
         Intent(this, ViewPagerTestActivity::class.java).apply {
             startActivity(this)
@@ -118,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
         // 하단 네비게이션 메뉴 색상변경
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setBottomSystemBarColor(Color.parseColor("#FF99AA"))
+            setBottomSystemBarColor(Color.parseColor("#8BC34A"))
         }
     }
 

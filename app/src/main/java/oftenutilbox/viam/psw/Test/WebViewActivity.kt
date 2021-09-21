@@ -44,8 +44,8 @@ class WebViewActivity : AppCompatActivity() {
                 addJavascriptInterface(AndroidJavascriptInterface(), "android")
                 setWebChromeClient(WebChromeClient())
 
-                loadUrl("http://www.google.com")
-
+                val sUrl = "file:///android_asset/test.html"
+                loadUrl(sUrl)
             }
         }
         setContentView(binding.root)
