@@ -203,7 +203,7 @@
             <Button
                 android:gravity="left|center"
                 android:textAllCaps="false"
-                android:text="vieModel을 이용한 타이머"
+                android:text="viewModel을 이용한 타이머"
                 android:layout_gravity="center"
                 android:id="@+id/btnViewModelTimer"
                 android:layout_width="match_parent"
