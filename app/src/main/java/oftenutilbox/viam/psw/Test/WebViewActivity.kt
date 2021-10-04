@@ -93,10 +93,10 @@ class WebViewActivity : AppCompatActivity() {
             fileChooserParams: WebChromeClient.FileChooserParams?
         ): Boolean {
 
-            if (mFileChooserCallback !=null){
-                mFileChooserCallback!!.onReceiveValue(null)
-                mFileChooserCallback = null
-            }
+            //if (mFileChooserCallback !=null){
+            //    mFileChooserCallback!!.onReceiveValue(null)
+            //    mFileChooserCallback = null
+            //}
 
             mFileChooserCallback = filePathCallback
             takePicture()
@@ -164,7 +164,12 @@ class WebViewActivity : AppCompatActivity() {
         when(requestCode){
             FILE_CHOOSE -> {
                 mFileChooserCallback!!.onReceiveValue(
-                    arrayOf<Uri>(data!!.data as Uri)
+                    if (intent == null )
+                        null
+                    else{
+                        if ( intent!!.data == null ) null
+                        else arrayOf<Uri>(intent!!.data as Uri)
+                    }
                 )
             }
         }
