@@ -164,11 +164,11 @@ class WebViewActivity : AppCompatActivity() {
         when(requestCode){
             FILE_CHOOSE -> {
                 mFileChooserCallback!!.onReceiveValue(
-                    if (intent == null )
+                    if (data == null )
                         null
                     else{
-                        if ( intent!!.data == null ) null
-                        else arrayOf<Uri>(intent!!.data as Uri)
+                        if ( data!!.data == null ) null
+                        else arrayOf<Uri>(data!!.data as Uri)
                     }
                 )
             }
