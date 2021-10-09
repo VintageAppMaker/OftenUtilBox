@@ -328,12 +328,20 @@ fun RecyclerView.getScrollDistanceOfColumnClosestToLeft(): Int {
     return if (absoluteLeft <= columnWidth / 2) left else columnWidth - absoluteLeft
 }
 
-fun RecyclerView.setMagneticMove(nMore : Int = 0){
-    addOnScrollListener(object: RecyclerView.OnScrollListener(){
+fun RecyclerView.setMagneticMove(nStart : Int = 0 ){
+    addOnScrollListener(object:RecyclerView.OnScrollListener(){
+        var oldMoveTo : Int = 0
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            val moveTo = getScrollDistanceOfColumnClosestToLeft()
+            val moveTo = getScrollDistanceOfColumnClosestToLeft() - nStart
             if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                recyclerView.smoothScrollBy(moveTo + nMore, 0)
+                // Viam 2021-10-10 오전 12:54 :
+                // smoothScrollBy()를 사용했을 경우,
+                // 양쪽 끝자리에서 움직이면 무한루핑이 됨.
+                // 그래서 이전값과 비교함.
+                if(moveTo !== oldMoveTo){
+                    recyclerView.smoothScrollBy(moveTo, 0)
+                    oldMoveTo = moveTo
+                }
             }
         }
     })
