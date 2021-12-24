@@ -4,22 +4,17 @@
     android:layout_height="match_parent"
     tools:context="oftenutilbox.viam.psw.Test.BlankFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <oftenutilbox.viam.psw.util.NewScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1300dp"
-                android:background="#FF00FF"
-                android:gravity="center"
-                android:text="@string/hello_blank_fragment" />
-        </LinearLayout>
-    </oftenutilbox.viam.psw.util.NewScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FF00FF"
+            android:gravity="center"
+            android:text="@string/hello_blank_fragment" />
+    </LinearLayout>
 
 </FrameLayout>

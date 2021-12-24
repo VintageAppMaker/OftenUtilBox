@@ -63,7 +63,9 @@ class WebViewActivity : AppCompatActivity() {
                     allowFileAccess = false
                     allowUniversalAccessFromFileURLs = false
                     allowFileAccessFromFileURLs = false
-                    domStorageEnabled = true
+
+                    domStorageEnabled = true // jquery 사용가능하게 함
+                    setTextZoom(100)         // webView가 system fontsize에 영향받지 않게 한다.
                 }
 
                 addJavascriptInterface(AndroidJavascriptInterface(), "android")
