@@ -329,6 +329,10 @@ fun RecyclerView.getScrollDistanceOfColumnClosestToLeft(): Int {
 }
 
 fun RecyclerView.setMagneticMove(nStart : Int = 0 ){
+    // 로그를 찍을 때, 확장함수도 class 외의 함수이므로
+    // 패키지명 + 파일명으로 파라메터를 넘긴다.
+    DUtil.d(me = "oftenutilbox.viam.psw.util.ViewExt", "setMagneticMove( $nStart )")
+
     addOnScrollListener(object:RecyclerView.OnScrollListener(){
         var oldMoveTo : Int = 0
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

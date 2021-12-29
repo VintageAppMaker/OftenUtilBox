@@ -21,16 +21,16 @@ import oftenutilbox.viam.psw.Test.adapter.SimpleData
 import oftenutilbox.viam.psw.util.*
 import com.bumptech.glide.Glide
 
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.*
-import com.bumptech.glide.request.target.Target
-import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        DUtil.d(this.javaClass.toString(), "onCreate")
+
         setContentView(R.layout.activity_main)
 
         testSystemNavigation()
@@ -86,6 +86,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun testViewPager() {
+        DUtil.d(this.javaClass.toString(), "testViewPager")
+
         Intent(this, ViewPagerTestActivity::class.java).apply {
             startActivity(this)
         }
