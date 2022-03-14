@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +24,7 @@ import com.bumptech.glide.Glide
 
 import android.view.View
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnWeightChange, {testWeightChange()})
         setButtonAction(R.id.btnViewPager, {testViewPager()})
         setButtonAction(R.id.btnWebView, {testWebView()})
+        setButtonAction(R.id.btnFlexlayout, {testFlexlayout()})
 
         testErrorHandler()
         testPref()
@@ -100,6 +103,33 @@ class MainActivity : AppCompatActivity() {
                 fnProcess()
             }
         }
+    }
+
+    private fun testFlexlayout(){
+
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: Example7Binding
+            binding = Example7Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            val colorTable = listOf("#FF0000", "#00FF00", "#0000FF")
+            binding.flexPanel.apply {
+                (1..100).forEach {
+                    val tv = TextView(this@MainActivity)
+
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18.toFloat())
+                    tv.setMarginDp(10f, 10f, 10f, 10f)
+
+                    //v.setFont("notosansjp_regular")
+                    val textIndx = colorTable[it % colorTable.size]
+                    tv.setTextColor(Color.parseColor("#ffffff"))
+                    tv.setBackgroundColor(Color.parseColor(textIndx))
+                    tv.setText("Test ${it}")
+                    addView(tv)
+                }
+            }
+
+        })
     }
 
     private fun testWeightChange() {
