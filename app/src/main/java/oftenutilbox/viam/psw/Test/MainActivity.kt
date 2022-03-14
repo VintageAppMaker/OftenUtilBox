@@ -112,20 +112,25 @@ class MainActivity : AppCompatActivity() {
             binding = Example7Binding.inflate(layoutInflater)
             setContent(binding.root)
 
-            val colorTable = listOf("#FF0000", "#00FF00", "#0000FF")
+            val colorTable = listOf("#FF0000", "#00FF00", "#0000FF", "#FF3200", "#33FFA0", "#00AAFF", "#333333")
             binding.flexPanel.apply {
                 (1..100).forEach {
                     val tv = TextView(this@MainActivity)
 
                     tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18.toFloat())
-                    tv.setMarginDp(10f, 10f, 10f, 10f)
+                    tv.setPaddingDp(10f, 10f, 10f, 10f)
 
-                    //v.setFont("notosansjp_regular")
                     val textIndx = colorTable[it % colorTable.size]
                     tv.setTextColor(Color.parseColor("#ffffff"))
                     tv.setBackgroundColor(Color.parseColor(textIndx))
                     tv.setText("Test ${it}")
                     addView(tv)
+
+                    if(it % colorTable.size == 0){
+                        val img = ImageView(this@MainActivity)
+                        img.setImageResource(R.mipmap.ic_launcher)
+                        addView(img)
+                    }
                 }
             }
 
