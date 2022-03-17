@@ -236,6 +236,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="ratio 예제"
+                android:layout_gravity="center"
+                android:id="@+id/btnRatiolayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <ImageView
                 android:id="@+id/imgTest"
                 android:layout_width="match_parent"

@@ -23,6 +23,7 @@ import oftenutilbox.viam.psw.util.*
 import com.bumptech.glide.Glide
 
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnViewPager, {testViewPager()})
         setButtonAction(R.id.btnWebView, {testWebView()})
         setButtonAction(R.id.btnFlexlayout, {testFlexlayout()})
+        setButtonAction(R.id.btnRatiolayout, {testRatiolayout()})
 
         testErrorHandler()
         testPref()
@@ -103,6 +105,35 @@ class MainActivity : AppCompatActivity() {
                 fnProcess()
             }
         }
+    }
+
+    // 핸드폰 비율에 맞추어 width/height 조절
+    private fun testRatiolayout(){
+
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: Example8Binding
+            binding = Example8Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            var baseWidth    = 480 // 디자인가이드에서 기준한 디바이스 전체 width
+
+            var designWidth  = 280 // 디자인가이드에서 정의한 width 값
+            var designHeight = 200 // 디자인가이드 height 값
+
+            var screenWidth = resources.displayMetrics.widthPixels
+
+            // 디자인가이드전체 : 디자인가이드가로 = 실제디바이스전체 : 적용된가로
+            var newImageWidth = (screenWidth) * designWidth / baseWidth
+            var newImageHeight = newImageWidth * designHeight / designWidth
+
+            binding.apply {
+                // 가로를 전체로 채우면 아래주석으로 설정
+                //imgLogo.setLayoutParams(LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, newImageHeight))
+                imgLogo.setLayoutParams(LinearLayout.LayoutParams(newImageWidth, newImageHeight))
+            }
+
+
+        })
     }
 
     private fun testFlexlayout(){
