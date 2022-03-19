@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnWebView, {testWebView()})
         setButtonAction(R.id.btnFlexlayout, {testFlexlayout()})
         setButtonAction(R.id.btnRatiolayout, {testRatiolayout()})
+        setButtonAction(R.id.btnServerAPI, {testServerAPITest()})
 
         testErrorHandler()
         testPref()
@@ -105,6 +106,23 @@ class MainActivity : AppCompatActivity() {
                 fnProcess()
             }
         }
+    }
+
+    // Server API Test
+    private fun testServerAPITest(){
+
+        QuickExampleActivity.launch(this, { setContent ->
+            val binding: ExampleServerapiBinding
+            binding = ExampleServerapiBinding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            binding.apply {
+                btnApiget.setOnClickListener {
+
+                }
+            }
+
+        })
     }
 
     // 핸드폰 비율에 맞추어 width/height 조절
@@ -379,8 +397,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
 
     private fun testErrorHandler() {
         var name : String? = null
