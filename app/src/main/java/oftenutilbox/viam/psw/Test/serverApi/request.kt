@@ -21,4 +21,13 @@ interface TestApi {
     @POST("/post/addObject")
     suspend fun addObjectWithDataClass (@Body userInfo: User) : ResponseBody
 
+    // post by form data
+    @FormUrlEncoded
+    @POST("/post/register")
+    suspend fun postFormdata(
+        @Field("account") account : String,
+        @Field("money")   money   : Int
+    ) : ResponseBody
+
+
 }

@@ -30,6 +30,17 @@ fun MainActivity.testServerAPITest(){
         })
     }
 
+    // post 방식 => form data 보내기
+    fun postFormInfo(fnSuccess : (res: String) -> Unit, fnError : (HTTPRespErr) -> Unit){
+        IORoutineWithUI({
+            val res = api.test.postFormdata("BC-212-12-111-991", 10000000)
+            fnSuccess(res.string())
+
+        }, {
+            fnError(it)
+        })
+    }
+
     // get 방식 => path와 queryString 보내기
     fun addValue(fnSuccess : (res: String) -> Unit, fnError : (HTTPRespErr) -> Unit){
         IORoutineWithUI({
@@ -65,6 +76,14 @@ fun MainActivity.testServerAPITest(){
 
             btnApiPathAndQuery.setOnClickListener {
                 addValue({
+                    txtResult.text = it.toString()
+                }, {
+                    txtResult.text = it.toString()
+                })
+            }
+
+            btnApipostForm.setOnClickListener {
+                postFormInfo({
                     txtResult.text = it.toString()
                 }, {
                     txtResult.text = it.toString()

@@ -32,6 +32,9 @@ object api {
         api.accessToken = token
     }
 
+    // androidmanifest.xml에서 application 영역에
+    // android:usesCleartextTraffic="true"을 추가해야 보안없는 http 프로토콜을 사용할 수 있다.
+    // 예제는 서버(https://github.com/VintageAppMaker/quick_ktor)가 실행된 주소를 하드코딩한다.
     val BASE = "http://192.168.0.12:8080"
 
     val builder = OkHttpClient.Builder()
