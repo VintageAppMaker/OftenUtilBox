@@ -26,6 +26,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
+import oftenutilbox.viam.psw.Test.serverApi.HTTPRespErr
+import oftenutilbox.viam.psw.Test.serverApi.IORoutineWithUI
+import oftenutilbox.viam.psw.Test.serverApi.api
+import oftenutilbox.viam.psw.Test.serverApi.api.errorCode
+import oftenutilbox.viam.psw.Test.serverApi.data.User
 
 
 class MainActivity : AppCompatActivity() {
@@ -108,22 +113,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Server API Test
-    private fun testServerAPITest(){
-
-        QuickExampleActivity.launch(this, { setContent ->
-            val binding: ExampleServerapiBinding
-            binding = ExampleServerapiBinding.inflate(layoutInflater)
-            setContent(binding.root)
-
-            binding.apply {
-                btnApiget.setOnClickListener {
-
-                }
-            }
-
-        })
-    }
 
     // 핸드폰 비율에 맞추어 width/height 조절
     private fun testRatiolayout(){

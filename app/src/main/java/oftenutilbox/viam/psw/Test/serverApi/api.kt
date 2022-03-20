@@ -32,7 +32,7 @@ object api {
         api.accessToken = token
     }
 
-    val BASE = "http://127.0.0.1:8080"
+    val BASE = "http://192.168.0.12:8080"
 
     val builder = OkHttpClient.Builder()
         // timeout setting

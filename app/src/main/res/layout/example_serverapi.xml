@@ -21,12 +21,32 @@
                 android:gravity="center">
 
                 <Button
+                    android:layout_margin="10dp"
                     android:gravity="left|center"
                     android:text="1. api get "
                     android:layout_gravity="center"
                     android:id="@+id/btnApiget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
+                <Button
+                    android:layout_margin="10dp"
+                    android:gravity="left|center"
+                    android:text="2. api post "
+                    android:layout_gravity="center"
+                    android:id="@+id/btnApipost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:layout_margin="10dp"
+                    android:gravity="left|center"
+                    android:text="3. api path, query "
+                    android:layout_gravity="center"
+                    android:id="@+id/btnApiPathAndQuery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
 
                 <View
                     android:layout_marginTop="4dp"
@@ -36,14 +56,14 @@
                     android:layout_height="1dp"/>
 
                 <TextView
-                    android:layout_margin="10dp"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11dp"
-                    android:gravity="center"
-                    android:text="Test"
                     android:id="@+id/txtResult"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="message"
+                    android:textColor="#223936"
+                    android:textSize="11dp" />
 
 
             </LinearLayout>
