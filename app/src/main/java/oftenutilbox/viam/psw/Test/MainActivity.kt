@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
     // 핸드폰 비율에 맞추어 width/height 조절
     private fun testRatiolayout(){
 
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, {  act, setContent ->
             val binding: Example8Binding
             binding = Example8Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun testFlexlayout(){
 
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, {  act, setContent ->
             val binding: Example7Binding
             binding = Example7Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testWeightChange() {
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example5Binding
             binding = Example5Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -203,7 +203,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testViewModelTimer() {
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, {  act, setContent ->
             val binding: Example6Binding
             binding = Example6Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -222,7 +222,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testAppbarlayout2Lines() {
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, { act,  setContent ->
             val binding: Example4Binding
             binding = Example4Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -230,7 +230,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testMagneticRecyclerView() {
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, {  act, setContent ->
             val binding: Example3Binding
             binding = Example3Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -257,7 +257,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testViewRotation() {
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, {  act, setContent ->
             val binding: Example2Binding
             binding = Example2Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -266,7 +266,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun testViewSize() {
 
-        QuickExampleActivity.launch(this, { setContent ->
+        QuickExampleActivity.launch(this, {  act, setContent ->
             val binding: Example1Binding
             binding = Example1Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -414,7 +414,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
+
 
 }

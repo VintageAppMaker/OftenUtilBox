@@ -1,7 +1,10 @@
 package oftenutilbox.viam.psw.Test.serverApi
 
 import oftenutilbox.viam.psw.Test.serverApi.data.User
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.http.*
 
 interface TestApi {
@@ -28,6 +31,12 @@ interface TestApi {
         @Field("account") account : String,
         @Field("money")   money   : Int
     ) : ResponseBody
+
+    @Multipart
+    @POST("/post/upload")
+    fun fileUpload(
+        @Part("filename") filename: RequestBody,
+        @Part imageFile : MultipartBody.Part): Call<ResponseBody>
 
 
 }

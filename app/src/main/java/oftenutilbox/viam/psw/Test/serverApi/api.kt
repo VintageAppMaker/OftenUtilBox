@@ -1,7 +1,6 @@
 package oftenutilbox.viam.psw.Test.serverApi
 
 import com.bumptech.glide.util.Util
-import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,8 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import oftenutilbox.viam.psw.util.DUtil
 import oftenutilbox.viam.psw.util.SafeHandler
-import okhttp3.Interceptor
-import okhttp3.Request
+import okhttp3.*
 import org.json.JSONObject
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -35,7 +33,7 @@ object api {
     // androidmanifest.xml에서 application 영역에
     // android:usesCleartextTraffic="true"을 추가해야 보안없는 http 프로토콜을 사용할 수 있다.
     // 예제는 서버(https://github.com/VintageAppMaker/quick_ktor)가 실행된 주소를 하드코딩한다.
-    val BASE = "http://192.168.0.12:8080"
+    var BASE = "http://192.168.0.14:8080"
 
     val builder = OkHttpClient.Builder()
         // timeout setting
@@ -130,7 +128,17 @@ object api {
                 .build()
             return retrofit.create(TestApi::class.java!!)
         }
+
+    fun getBody(value : String ): RequestBody {
+        //val r = MultipartBody.Part.createFormData(key, value.toString())
+        var r= RequestBody.create(
+            MediaType.parse("multipart/form-data"), value)
+        //Util.d("{$r} ${key}, ${value} ${value.toString()} ")
+        return r
+    }
 }
+
+
 
 fun DTag() = "oftenutilbox.viam.psw.Test.serverApi.api"
 enum class ErrorType {

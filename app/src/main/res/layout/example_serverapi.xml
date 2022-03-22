@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:background="#FFFF00"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -57,6 +58,17 @@
                     android:layout_height="wrap_content"/>
 
 
+                <Button
+                    android:layout_margin="5dp"
+                    android:gravity="left|center"
+                    android:textSize="11dp"
+                    android:text="5. file upload, suspend 함수 아닌 비동기방식 "
+                    android:layout_gravity="center"
+                    android:id="@+id/btnApiFileupload"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
 
                 <View
                     android:layout_marginTop="5dp"
@@ -64,6 +76,22 @@
                     android:background="#676767"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"/>
+
+                <EditText
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:id="@+id/edtIP"
+                    android:hint="도메인주소입력 : http://192.168.0.14:8080"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="#676767"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
 
                 <TextView
                     android:id="@+id/txtResult"
