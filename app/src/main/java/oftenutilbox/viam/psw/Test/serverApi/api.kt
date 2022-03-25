@@ -83,15 +83,11 @@ object api {
                 SafeHandler({
                     val jsonString = response.body()?.string() ?: ""
                     val jsonObject = JSONObject(jsonString)
-                    errorCode = jsonObject.optString("errorCode")
-                    errorMsg = jsonObject.optString("resultMsg")
 
-                    DUtil.d(
-                        me = DTag(),
-                        "http error : ${response.code()}\ncode : ${errorCode}\nmsg : ${errorMsg}\n"
-                    )
+                    // 200이 아닐경우, 넘어오는 json 처리
                 }, {})
 
+                // 2번 호출
                 return@Interceptor chain.proceed(request)
             } else {
                 // 200일때 전역적으로 처리해야할 필드만 가져오기
