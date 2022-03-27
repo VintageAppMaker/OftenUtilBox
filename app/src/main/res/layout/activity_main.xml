@@ -261,6 +261,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="Notificaiton test"
+                android:layout_gravity="center"
+                android:id="@+id/btnNorification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <ImageView
                 android:id="@+id/imgTest"
                 android:layout_width="match_parent"

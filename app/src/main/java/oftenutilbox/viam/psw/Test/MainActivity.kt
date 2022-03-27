@@ -23,14 +23,9 @@ import oftenutilbox.viam.psw.util.*
 import com.bumptech.glide.Glide
 
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.res.ResourcesCompat
-import oftenutilbox.viam.psw.Test.serverApi.HTTPRespErr
-import oftenutilbox.viam.psw.Test.serverApi.IORoutineWithUI
-import oftenutilbox.viam.psw.Test.serverApi.api
-import oftenutilbox.viam.psw.Test.serverApi.api.errorCode
-import oftenutilbox.viam.psw.Test.serverApi.data.User
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnFlexlayout, {testFlexlayout()})
         setButtonAction(R.id.btnRatiolayout, {testRatiolayout()})
         setButtonAction(R.id.btnServerAPI, {testServerAPITest()})
+        setButtonAction(R.id.btnNorification, {testNotification()})
 
         testErrorHandler()
         testPref()
@@ -113,6 +109,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Notification test
+    private fun testNotification(){
+        // network을 사용하므로 Activity에서는 UI외의 쓰레드에서 사용해야 한다.
+        var intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("scheme", "url")
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
+        GlobalScope.launch() {
+            val bm = NotificationUtil.getImageFromUrl("https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
+            if (bm == null) return@launch
+            NotificationUtil.notiWithImage(this@MainActivity, R.drawable.ic_launcher_background, run{
+                intent
+            }, "타이틀 입니다.", "메시지 입니다. \n두번째 줄입니다.",  bm)
+        }
+    }
 
     // 핸드폰 비율에 맞추어 width/height 조절
     private fun testRatiolayout(){
