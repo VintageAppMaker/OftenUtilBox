@@ -81,6 +81,8 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/edtIP"
+                    android:textColor="#333333"
+                    android:textColorHint="#FF00FF"
                     android:hint="도메인주소입력 : http://192.168.0.14:8080"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
