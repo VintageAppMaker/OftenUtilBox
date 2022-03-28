@@ -80,7 +80,7 @@ class QuickDialog:  DialogFragment(){
 ~~~
 
 - 사용예제) NestedScrollCustomAcitivity.kt
-[NestedScrollCustomAcitivity](/app/src/main/java/oftenutilbox/viam/psw/Test/NestedScrollCustomActivity.kt)
+[NestedScrollCustomAcitivity](/app/src/main/java/oftenutilbox/viam/psw/example/NestedScrollCustomActivity.kt)
 ~~~kotlin
 QuickDialog().apply {
     QShow(this@NestedScrollCustomActivity.supportFragmentManager, "test") {

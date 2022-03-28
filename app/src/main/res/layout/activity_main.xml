@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#8BC34A"
     android:padding="10dp"
-    tools:context="oftenutilbox.viam.psw.Test.MainActivity">
+    tools:context="oftenutilbox.viam.psw.example.MainActivity">
 
     <ScrollView
         android:scrollbars="none"

@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.Test
+package oftenutilbox.viam.psw.example
 
 import android.content.Context
 import android.content.Intent
@@ -16,11 +16,11 @@ import java.io.File
 
 class QuickExampleActivity : AppCompatActivity() {
     companion object{
-        var fnSetup : (act : QuickExampleActivity,  (View)-> Unit )-> Unit = {act, setup -> }
+        var fnSetup : (act : QuickExampleActivity, (View)-> Unit )-> Unit = { act, setup -> }
         var bTrans  : Boolean = false
-        fun launch(ctx : Context, fnSetup : ( act : QuickExampleActivity, (View)-> Unit )-> Unit, bTransparent : Boolean =false ){
+        fun launch(ctx : Context, fnSetup : (act : QuickExampleActivity, (View)-> Unit )-> Unit, bTransparent : Boolean =false ){
             Intent(ctx, QuickExampleActivity::class.java).apply {
-                QuickExampleActivity.fnSetup = fnSetup
+                Companion.fnSetup = fnSetup
                 bTrans  = bTransparent
                 ctx.startActivity(this)
             }

@@ -110,7 +110,7 @@ style.xml
 ~~~
 
 example은 MainActivity에 있음.
-[MainActivity.kt](/app/src/main/java/oftenutilbox/viam/psw/Test/MainActivity.kt)
+[MainActivity.kt](/app/src/main/java/oftenutilbox/viam/psw/example/MainActivity.kt)
 
 ~~~kotlin
     private fun testAppbarlayout2Lines() {

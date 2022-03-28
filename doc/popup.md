@@ -54,7 +54,7 @@ fun Context.quickPopup(toView: View, fnSetup : (()->Unit ) -> PopupInfo){
 
 - 사용예제) NestedScrollCustomActivity.kt
 
-[NestedScrollCustomAcitivity](/app/src/main/java/oftenutilbox/viam/psw/Test/NestedScrollCustomActivity.kt)
+[NestedScrollCustomAcitivity](/app/src/main/java/oftenutilbox/viam/psw/example/NestedScrollCustomActivity.kt)
 ~~~kotlin
         toView.setOnClickListener {
             quickPopup(toView){

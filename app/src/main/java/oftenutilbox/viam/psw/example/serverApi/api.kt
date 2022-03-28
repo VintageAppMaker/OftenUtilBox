@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.Test.serverApi
+package oftenutilbox.viam.psw.example.serverApi
 
 import com.bumptech.glide.util.Util
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,8 +26,8 @@ object api {
 
 
     fun setDeviceIdInfo(token: String, devId: String) {
-        api.devID = devId
-        api.accessToken = token
+        devID = devId
+        accessToken = token
     }
 
     // androidmanifest.xml에서 application 영역에
@@ -54,7 +54,7 @@ object api {
             // 토큰이 있을 경우와 없을 경우처리
             if (accessToken != "" && accessToken != "null") {
                 hdr = chain.request().newBuilder()
-                    .addHeader("Authorization", " Bearer ${accessToken}")
+                    .addHeader("Authorization", " Bearer $accessToken")
                     .addHeader("devID", devID)
                     .build()
             } else {
@@ -154,8 +154,10 @@ fun IORoutine(fnProcess: suspend CoroutineScope.() -> Unit, fnError : suspend Co
         catch (e: Exception){
             DUtil.d(me = DTag(), e.toString())
             when (e){
-                is UnknownHostException   -> {api.errorMsg = "UnknownHostException"}
-                is SocketTimeoutException -> {api.errorMsg = "SocketTimeoutException"}
+                is UnknownHostException   -> {
+                    api.errorMsg = "UnknownHostException"}
+                is SocketTimeoutException -> {
+                    api.errorMsg = "SocketTimeoutException"}
             }
 
             DUtil.d(me = DTag(),"IORoutine -> fnError ${api.httpCode}, ${api.errorCode}, ${api.errorMsg}")

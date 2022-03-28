@@ -1,6 +1,6 @@
-package oftenutilbox.viam.psw.Test.serverApi
+package oftenutilbox.viam.psw.example.serverApi
 
-import oftenutilbox.viam.psw.Test.serverApi.data.User
+import oftenutilbox.viam.psw.example.serverApi.data.User
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody

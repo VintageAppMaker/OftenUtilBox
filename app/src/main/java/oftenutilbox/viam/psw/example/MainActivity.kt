@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.Test
+package oftenutilbox.viam.psw.example
 
 import android.content.Context
 import android.content.Intent
@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.psw.oftenutilbox.R
 import com.test.psw.oftenutilbox.databinding.*
 import kotlinx.coroutines.Job
-import oftenutilbox.viam.psw.Test.adapter.Box
-import oftenutilbox.viam.psw.Test.adapter.MagneticAdapter
-import oftenutilbox.viam.psw.Test.adapter.SimpleData
+import oftenutilbox.viam.psw.example.adapter.Box
+import oftenutilbox.viam.psw.example.adapter.MagneticAdapter
+import oftenutilbox.viam.psw.example.adapter.SimpleData
 import oftenutilbox.viam.psw.util.*
 import com.bumptech.glide.Glide
 
@@ -116,6 +116,10 @@ class MainActivity : AppCompatActivity() {
             putExtra("scheme", "url")
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
+
+        // 일반적으로 서버에서 Notification을 보내므로
+        // Service에서 구현한다. 그 때는 Thread관련 이슈가 없으므로
+        // coroutine을 사용할 필요없다.
         GlobalScope.launch() {
             val bm = NotificationUtil.getImageFromUrl("https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
             if (bm == null) return@launch
@@ -128,14 +132,14 @@ class MainActivity : AppCompatActivity() {
     // 핸드폰 비율에 맞추어 width/height 조절
     private fun testRatiolayout(){
 
-        QuickExampleActivity.launch(this, {  act, setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example8Binding
             binding = Example8Binding.inflate(layoutInflater)
             setContent(binding.root)
 
-            var baseWidth    = 480 // 디자인가이드에서 기준한 디바이스 전체 width
+            var baseWidth = 480 // 디자인가이드에서 기준한 디바이스 전체 width
 
-            var designWidth  = 280 // 디자인가이드에서 정의한 width 값
+            var designWidth = 280 // 디자인가이드에서 정의한 width 값
             var designHeight = 200 // 디자인가이드 height 값
 
             var screenWidth = resources.displayMetrics.widthPixels
@@ -156,12 +160,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun testFlexlayout(){
 
-        QuickExampleActivity.launch(this, {  act, setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example7Binding
             binding = Example7Binding.inflate(layoutInflater)
             setContent(binding.root)
 
-            val colorTable = listOf("#FF0000", "#00FF00", "#0000FF", "#FF3200", "#33FFA0", "#00AAFF", "#333333")
+            val colorTable =
+                listOf("#FF0000", "#00FF00", "#0000FF", "#FF3200", "#33FFA0", "#00AAFF", "#333333")
             binding.flexPanel.apply {
                 (1..100).forEach {
                     val tv = TextView(this@MainActivity)
@@ -175,7 +180,7 @@ class MainActivity : AppCompatActivity() {
                     tv.setText("Test ${it}")
                     addView(tv)
 
-                    if(it % colorTable.size == 0){
+                    if (it % colorTable.size == 0) {
                         val img = ImageView(this@MainActivity)
                         img.setImageResource(R.mipmap.ic_launcher)
                         addView(img)
@@ -214,26 +219,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testViewModelTimer() {
-        QuickExampleActivity.launch(this, {  act, setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example6Binding
             binding = Example6Binding.inflate(layoutInflater)
             setContent(binding.root)
 
             var count = 0
             val viewModel = ViewModelProvider(this@MainActivity).get(TimerViewModel::class.java)
-            val timerAction : () -> Unit = { binding.txtMessage.text = "${count++}" }
+            val timerAction: () -> Unit = { binding.txtMessage.text = "${count++}" }
             viewModel.setInterval(500)
             viewModel.timerStart(timerAction)
             binding.txtMessage.setOnClickListener {
                 viewModel.apply {
-                    if ( isRun ) timerStop() else timerStart(timerAction)
+                    if (isRun) timerStop() else timerStart(timerAction)
                 }
             }
         })
     }
 
     private fun testAppbarlayout2Lines() {
-        QuickExampleActivity.launch(this, { act,  setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example4Binding
             binding = Example4Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -241,7 +246,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testMagneticRecyclerView() {
-        QuickExampleActivity.launch(this, {  act, setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example3Binding
             binding = Example3Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -250,15 +255,17 @@ class MainActivity : AppCompatActivity() {
                 val lst = mutableListOf<SimpleData>()
                 val colortable = listOf(Color.RED, Color.GRAY, Color.BLUE, Color.GREEN, Color.WHITE)
                 (0..30).forEach {
-                    val item = Box(color = colortable.get( it % colortable.size), alpha = it * 0.1f % 1.0f )
-                    lst.add( item as SimpleData )
+                    val item =
+                        Box(color = colortable.get(it % colortable.size), alpha = it * 0.1f % 1.0f)
+                    lst.add(item as SimpleData)
                 }
 
                 // 좌측에서 이동
                 //recycler.setMagneticMove(dpToPx(60f) * -1)
                 recycler.setMagneticMove()
 
-                val manager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                val manager =
+                    LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
                 recycler.layoutManager = manager
                 val adt = MagneticAdapter(lst, applicationContext)
                 recycler.adapter = adt
@@ -268,7 +275,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testViewRotation() {
-        QuickExampleActivity.launch(this, {  act, setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example2Binding
             binding = Example2Binding.inflate(layoutInflater)
             setContent(binding.root)
@@ -277,7 +284,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun testViewSize() {
 
-        QuickExampleActivity.launch(this, {  act, setContent ->
+        QuickExampleActivity.launch(this, { act, setContent ->
             val binding: Example1Binding
             binding = Example1Binding.inflate(layoutInflater)
             setContent(binding.root)

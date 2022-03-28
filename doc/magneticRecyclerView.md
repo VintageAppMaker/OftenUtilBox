@@ -36,7 +36,7 @@ fun RecyclerView.setMagneticMove(){
 
 사용법은 recycler를 생성 후, setMagneticMove를 호출해주기만 하면된다.
 
-[MainActivity.kt](/app/src/main/java/oftenutilbox/viam/psw/Test/MainActivity.kt)
+[MainActivity.kt](/app/src/main/java/oftenutilbox/viam/psw/example/MainActivity.kt)
 ~~~kotlin
     private fun testMagneticRecyclerView() {
         QuickExampleActivity.launch(this, { setContent ->

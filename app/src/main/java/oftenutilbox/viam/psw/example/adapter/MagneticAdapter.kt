@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.Test.adapter
+package oftenutilbox.viam.psw.example.adapter
 
 import android.content.Context
 import android.graphics.Color
@@ -25,8 +25,12 @@ class MagneticAdapter(val items : List<SimpleData>, val context: Context) : Recy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType){
-            TYPE_ONE   -> {boxViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false))}
-            else -> {boxViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false))}
+            TYPE_ONE   -> {
+                boxViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false))
+            }
+            else -> {
+                boxViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false))
+            }
         }
     }
 

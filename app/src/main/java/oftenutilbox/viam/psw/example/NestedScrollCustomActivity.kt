@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.Test
+package oftenutilbox.viam.psw.example
 
 import android.content.Context
 import android.graphics.Color
@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.viewpager.widget.ViewPager
 import com.test.psw.oftenutilbox.R
 import oftenutilbox.viam.psw.util.*
 
@@ -72,8 +71,6 @@ class NestedScrollCustomActivity : AppCompatActivity() {
             }
         }
 
-
-
         val toView = findViewById<ImageView>(R.id.more)
         toView.setOnClickListener {
             quickPopup(toView){
@@ -105,7 +102,6 @@ class NestedScrollCustomActivity : AppCompatActivity() {
                 txtLineCount.text = s2
             }
         }
-
 
     }
 }

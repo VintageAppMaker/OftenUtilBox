@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.Test
+package oftenutilbox.viam.psw.example
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

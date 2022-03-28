@@ -3,9 +3,9 @@
     package="com.test.psw.oftenutilbox">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -13,17 +13,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.OftenUtilBox">
+        android:theme="@style/Theme.OftenUtilBox"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name="oftenutilbox.viam.psw.Test.WebViewActivity"
+            android:name="oftenutilbox.viam.psw.example.WebViewActivity"
             android:exported="true" />
         <activity
-            android:name="oftenutilbox.viam.psw.Test.ViewPagerTestActivity"
+            android:name="oftenutilbox.viam.psw.example.ViewPagerTestActivity"
             android:exported="true" />
-        <activity android:name="oftenutilbox.viam.psw.Test.NestedScrollCustomActivity" />
-        <activity android:name="oftenutilbox.viam.psw.Test.QuickExampleActivity" />
-        <activity android:name="oftenutilbox.viam.psw.Test.MainActivity">
+        <activity android:name="oftenutilbox.viam.psw.example.NestedScrollCustomActivity" />
+        <activity android:name="oftenutilbox.viam.psw.example.QuickExampleActivity" />
+        <activity android:name="oftenutilbox.viam.psw.example.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

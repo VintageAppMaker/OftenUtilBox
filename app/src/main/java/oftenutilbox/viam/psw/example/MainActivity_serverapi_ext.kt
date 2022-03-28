@@ -1,14 +1,14 @@
-package oftenutilbox.viam.psw.Test
+package oftenutilbox.viam.psw.example
 
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import com.test.psw.oftenutilbox.databinding.ExampleServerapiBinding
-import oftenutilbox.viam.psw.Test.serverApi.HTTPRespErr
-import oftenutilbox.viam.psw.Test.serverApi.IORoutineWithUI
-import oftenutilbox.viam.psw.Test.serverApi.api
-import oftenutilbox.viam.psw.Test.serverApi.data.User
+import oftenutilbox.viam.psw.example.serverApi.HTTPRespErr
+import oftenutilbox.viam.psw.example.serverApi.IORoutineWithUI
+import oftenutilbox.viam.psw.example.serverApi.api
+import oftenutilbox.viam.psw.example.serverApi.data.User
 import oftenutilbox.viam.psw.util.DUtil
 import oftenutilbox.viam.psw.util.SafeHandler
 import okhttp3.MediaType
@@ -122,14 +122,14 @@ fun MainActivity.testServerAPITest(){
         })
     }
 
-    QuickExampleActivity.launch(this, {  act, setContent ->
+    QuickExampleActivity.launch(this, { act, setContent ->
         val binding: ExampleServerapiBinding
         binding = ExampleServerapiBinding.inflate(layoutInflater)
         setContent(binding.root)
 
         binding.apply {
 
-            edtIP.addTextChangedListener( object:TextWatcher{
+            edtIP.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
                 }
@@ -195,15 +195,16 @@ fun MainActivity.testServerAPITest(){
 
                         //  파일쓰기
                         val inputStream = contentResolver.openInputStream(uri)
-                        var fos: FileOutputStream = openFileOutput(getUploadFilename(), Context.MODE_PRIVATE)
+                        var fos: FileOutputStream =
+                            openFileOutput(getUploadFilename(), Context.MODE_PRIVATE)
                         fos!!.write(inputStream!!.readBytes())
                         fos!!.close()
 
-                       fileAndFormdataUpload({
-                               txtResult.text = it.toString()
-                           }, {
-                               txtResult.text = it.toString()
-                           })
+                        fileAndFormdataUpload({
+                            txtResult.text = it.toString()
+                        }, {
+                            txtResult.text = it.toString()
+                        })
 
 
                     }, {})
