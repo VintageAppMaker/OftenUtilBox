@@ -270,6 +270,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="BottomNavigation test"
+                android:layout_gravity="center"
+                android:id="@+id/btnBottomNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <ImageView
                 android:id="@+id/imgTest"
                 android:layout_width="match_parent"
@@ -284,6 +293,8 @@
                 android:id="@+id/txtBackgroudText"
                 android:layout_width="100dp"
                 android:layout_height="100dp"/>
+
+
 
         </LinearLayout>
 

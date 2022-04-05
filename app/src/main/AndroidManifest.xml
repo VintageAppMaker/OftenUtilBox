@@ -15,9 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OftenUtilBox"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name="oftenutilbox.viam.psw.example.activity.WebViewActivity"
             android:exported="true" />
+
+        <activity
+            android:name="oftenutilbox.viam.psw.example.activity.BottomMenuActivity"
+            android:exported="true" />
+
         <activity
             android:name="oftenutilbox.viam.psw.example.activity.ViewPagerTestActivity"
             android:exported="true" />

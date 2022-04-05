@@ -26,10 +26,7 @@ import android.view.View
 import android.widget.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import oftenutilbox.viam.psw.example.activity.NestedScrollCustomActivity
-import oftenutilbox.viam.psw.example.activity.QuickExampleActivity
-import oftenutilbox.viam.psw.example.activity.ViewPagerTestActivity
-import oftenutilbox.viam.psw.example.activity.WebViewActivity
+import oftenutilbox.viam.psw.example.activity.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnRatiolayout, {testRatiolayout()})
         setButtonAction(R.id.btnServerAPI, {testServerAPITest()})
         setButtonAction(R.id.btnNorification, {testNotification()})
+        setButtonAction(R.id.btnBottomNavigation, {testBottomNavigation()})
 
         testErrorHandler()
         testPref()
@@ -89,6 +87,12 @@ class MainActivity : AppCompatActivity() {
             .load(url)
             .into(target)
 
+    }
+
+    private fun testBottomNavigation() {
+        Intent(this, BottomMenuActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
     private fun testWebView() {
