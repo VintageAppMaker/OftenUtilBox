@@ -16,13 +16,13 @@
         android:theme="@style/Theme.OftenUtilBox"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="oftenutilbox.viam.psw.example.WebViewActivity"
+            android:name="oftenutilbox.viam.psw.example.activity.WebViewActivity"
             android:exported="true" />
         <activity
-            android:name="oftenutilbox.viam.psw.example.ViewPagerTestActivity"
+            android:name="oftenutilbox.viam.psw.example.activity.ViewPagerTestActivity"
             android:exported="true" />
-        <activity android:name="oftenutilbox.viam.psw.example.NestedScrollCustomActivity" />
-        <activity android:name="oftenutilbox.viam.psw.example.QuickExampleActivity" />
+        <activity android:name="oftenutilbox.viam.psw.example.activity.NestedScrollCustomActivity" />
+        <activity android:name="oftenutilbox.viam.psw.example.activity.QuickExampleActivity" />
         <activity android:name="oftenutilbox.viam.psw.example.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

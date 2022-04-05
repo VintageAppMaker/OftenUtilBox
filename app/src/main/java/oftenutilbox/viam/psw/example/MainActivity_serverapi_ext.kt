@@ -3,8 +3,8 @@ package oftenutilbox.viam.psw.example
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import com.test.psw.oftenutilbox.databinding.ExampleServerapiBinding
+import oftenutilbox.viam.psw.example.activity.QuickExampleActivity
 import oftenutilbox.viam.psw.example.serverApi.HTTPRespErr
 import oftenutilbox.viam.psw.example.serverApi.IORoutineWithUI
 import oftenutilbox.viam.psw.example.serverApi.api

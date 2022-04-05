@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.example
+package oftenutilbox.viam.psw.example.activity
 
 import android.Manifest
 import android.content.Intent
@@ -8,12 +8,10 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.webkit.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import com.test.psw.oftenutilbox.R
 import com.test.psw.oftenutilbox.databinding.ActivityWebViewBinding
 import oftenutilbox.viam.psw.util.toast
 

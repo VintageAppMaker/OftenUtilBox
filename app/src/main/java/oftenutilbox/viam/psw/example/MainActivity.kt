@@ -26,6 +26,10 @@ import android.view.View
 import android.widget.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import oftenutilbox.viam.psw.example.activity.NestedScrollCustomActivity
+import oftenutilbox.viam.psw.example.activity.QuickExampleActivity
+import oftenutilbox.viam.psw.example.activity.ViewPagerTestActivity
+import oftenutilbox.viam.psw.example.activity.WebViewActivity
 
 
 class MainActivity : AppCompatActivity() {

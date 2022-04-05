@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.example
+package oftenutilbox.viam.psw.example.activity
 
 import android.content.Context
 import android.graphics.Color

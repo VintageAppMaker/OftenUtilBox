@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.example
+package oftenutilbox.viam.psw.example.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

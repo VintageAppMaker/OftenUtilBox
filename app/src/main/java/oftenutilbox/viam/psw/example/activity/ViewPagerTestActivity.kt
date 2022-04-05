@@ -1,10 +1,12 @@
-package oftenutilbox.viam.psw.example
+package oftenutilbox.viam.psw.example.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.test.psw.oftenutilbox.R
+import oftenutilbox.viam.psw.example.fragment.BlankFragment
+
 import oftenutilbox.viam.psw.util.NewScrollView
 import oftenutilbox.viam.psw.util.attachFragments
 

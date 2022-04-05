@@ -1,4 +1,4 @@
-package oftenutilbox.viam.psw.example
+package oftenutilbox.viam.psw.example.activity
 
 import android.content.Context
 import android.content.Intent
@@ -9,10 +9,6 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import android.view.View
 import com.test.psw.oftenutilbox.R
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import java.io.File
 
 class QuickExampleActivity : AppCompatActivity() {
     companion object{
