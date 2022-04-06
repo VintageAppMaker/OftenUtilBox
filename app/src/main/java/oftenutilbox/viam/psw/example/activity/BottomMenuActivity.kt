@@ -5,10 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.test.psw.oftenutilbox.R
 import com.test.psw.oftenutilbox.databinding.ActivityBottomMenuBinding
-import oftenutilbox.viam.psw.example.fragment.FourFragment
-import oftenutilbox.viam.psw.example.fragment.HomeFragment
-import oftenutilbox.viam.psw.example.fragment.SecondFragment
-import oftenutilbox.viam.psw.example.fragment.ThirdFragment
+import oftenutilbox.viam.psw.example.fragment.*
 import java.lang.Exception
 
 class BottomMenuActivity : AppCompatActivity() {
@@ -77,10 +74,22 @@ class BottomMenuActivity : AppCompatActivity() {
     }
 
     private fun backKeyManager() {
+
+        // fragment내에서 Onbackpressed 구현
+        val fragmentList = supportFragmentManager.fragments
+        if (fragmentList != null) {
+            for (fragment in fragmentList) {
+                if (fragment is OnBackPressedListener) {
+                    // fragment에서 onBack을 처리하겠다고 하면 리턴
+                    if ( (fragment as OnBackPressedListener).onBackPressed() )
+                        return
+                }
+            }
+        }
+
         supportFragmentManager.fragments.size?.let { nCount ->
             if (nCount == 0)
-                //finish()
-                // 메모리에서 삭제하자.
+                // 메모리에서 삭제
                 finishAndRemoveTask()
         }
         supportFragmentManager.popBackStack()
@@ -96,16 +105,15 @@ class BottomMenuActivity : AppCompatActivity() {
 
         // Sync에 문제가 발생하여 index가 안맞을 경우 종료시킴
         try {
-
             // menu click 기능구현
-            moveBackHistory()
+            ActivateBackFragment()
         } catch (e: Exception) {
             e.printStackTrace()
             finish()
         }
     }
 
-    private fun moveBackHistory() {
+    private fun ActivateBackFragment() {
         val n = if ( supportFragmentManager.fragments.size > 1) 1 else 0
 
         val f = supportFragmentManager.fragments[n]
