@@ -26,7 +26,8 @@ class FourFragment : Fragment(), OnBackPressedListener {
     // Fragment에서 OnBackpressed를 구현함
     override fun onBackPressed(): Boolean {
         if(backcount < 1) return false
-        binding.textMessage.text = "Four: back count remain- ${backcount}"
+        binding.textMessage.text  = "Four( back count remain )"
+        binding.textMessage2.text = "${backcount}"
         backcount--
         return true
     }
