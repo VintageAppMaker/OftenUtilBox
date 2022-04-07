@@ -20,7 +20,7 @@
     </style>
 
     <style name="BottomNaviTextStyle">
-        <item name="android:textSize">12dp</item>
+        <item name="android:textSize">14dp</item>
         <item name="android:textColor">#ffffff</item>
     </style>
 </resources>

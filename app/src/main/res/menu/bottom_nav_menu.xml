@@ -4,23 +4,23 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@android:drawable/bottom_bar"
-        android:title="A" />
+        android:title="Home" />
 
     <item
         android:id="@+id/menu_second"
         android:icon="@android:drawable/sym_action_call"
-        android:title="B" />
+        android:title="Second" />
 
     <item
         android:id="@+id/menu_third"
         android:icon="@android:drawable/btn_star_big_on"
-        android:title="c" />
+        android:title="Third" />
 
 
     <item
         android:id="@+id/menu_four"
         android:icon="@android:drawable/ic_menu_camera"
-        android:title="d" />
+        android:title="Four" />
 
 
 </menu>

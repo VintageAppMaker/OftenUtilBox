@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.test.psw.oftenutilbox.R
 import com.test.psw.oftenutilbox.databinding.FragmentFourBinding
-import oftenutilbox.viam.psw.util.toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,8 +25,8 @@ class FourFragment : Fragment(), OnBackPressedListener {
     private var backcount = 3
     // Fragment에서 OnBackpressed를 구현함
     override fun onBackPressed(): Boolean {
-        context.toast("${backcount}")
         if(backcount < 1) return false
+        binding.textMessage.text = "Four: back count remain- ${backcount}"
         backcount--
         return true
     }
