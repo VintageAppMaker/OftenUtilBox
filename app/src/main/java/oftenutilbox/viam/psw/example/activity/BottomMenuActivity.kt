@@ -1,7 +1,9 @@
 package oftenutilbox.viam.psw.example.activity
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.test.psw.oftenutilbox.R
 import com.test.psw.oftenutilbox.databinding.ActivityBottomMenuBinding
@@ -15,7 +17,7 @@ class BottomMenuActivity : AppCompatActivity() {
         binding = ActivityBottomMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setFragmentWithAnimation(HomeFragment.newInstance("", ""))
+        setFragment(HomeFragment.newInstance("", ""))
         setUpBottomMenu()
     }
 
@@ -43,15 +45,15 @@ class BottomMenuActivity : AppCompatActivity() {
                 when(item.itemId){
                     R.id.menu_home     -> {
 
-                        setFragmentWithAnimation(HomeFragment.newInstance("", ""))
+                        setFragment(HomeFragment.newInstance("", ""))
                         true
                     }
                     R.id.menu_second -> {
-                        setFragmentWithAnimation(SecondFragment.newInstance("", "")); true}
+                        setFragment(SecondFragment.newInstance("", "")); true}
                     R.id.menu_third   -> {
-                        setFragmentWithAnimation(ThirdFragment.newInstance("", "")); true}
+                        setFragment(ThirdFragment.newInstance("", "")); true}
                     R.id.menu_four    -> {
-                        setFragmentWithAnimation(FourFragment.newInstance("", "")); true}
+                        setFragment(FourFragment.newInstance("", "")); true}
 
                     else -> true
                 }
@@ -59,7 +61,7 @@ class BottomMenuActivity : AppCompatActivity() {
         }
     }
 
-    fun setFragmentWithAnimation(fragment: Fragment) {
+    fun setFragment(fragment: Fragment) {
 
         supportFragmentManager
             .beginTransaction()
@@ -73,6 +75,7 @@ class BottomMenuActivity : AppCompatActivity() {
         backKeyManager()
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun backKeyManager() {
 
         // fragment내에서 Onbackpressed 구현
@@ -96,9 +99,9 @@ class BottomMenuActivity : AppCompatActivity() {
         supportFragmentManager.executePendingTransactions()
 
         // 종료처리
-        if (supportFragmentManager.backStackEntryCount == 0) finish()
+        if (supportFragmentManager.backStackEntryCount == 0) finishAndRemoveTask()
         val nIndx = supportFragmentManager.fragments.size
-        if (nIndx < 1) finish()
+        if (nIndx < 1) finishAndRemoveTask()
 
         // 잠시 setOnNavigationItemSelectedListener를 비활성화
         binding.bottomNav.setOnNavigationItemSelectedListener { true }
@@ -109,7 +112,7 @@ class BottomMenuActivity : AppCompatActivity() {
             ActivateBackFragment()
         } catch (e: Exception) {
             e.printStackTrace()
-            finish()
+            finishAndRemoveTask()
         }
     }
 
