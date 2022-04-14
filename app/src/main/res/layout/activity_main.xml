@@ -279,6 +279,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <View
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="#676767"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <Button
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:text="Room(DB) Test"
+                android:layout_gravity="center"
+                android:id="@+id/btnRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <ImageView
                 android:id="@+id/imgTest"
                 android:layout_width="match_parent"

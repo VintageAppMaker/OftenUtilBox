@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.psw.oftenutilbox.R
 import com.test.psw.oftenutilbox.databinding.*
-import kotlinx.coroutines.Job
 import oftenutilbox.viam.psw.example.adapter.Box
 import oftenutilbox.viam.psw.example.adapter.MagneticAdapter
 import oftenutilbox.viam.psw.example.adapter.SimpleData
@@ -24,9 +23,12 @@ import com.bumptech.glide.Glide
 
 import android.view.View
 import android.widget.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import kotlinx.coroutines.*
 import oftenutilbox.viam.psw.example.activity.*
+import oftenutilbox.viam.psw.example.data.room.tables.AcccountInfo
+import oftenutilbox.viam.psw.example.data.room.tables.AppDatabase
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         setButtonAction(R.id.btnServerAPI, {testServerAPITest()})
         setButtonAction(R.id.btnNorification, {testNotification()})
         setButtonAction(R.id.btnBottomNavigation, {testBottomNavigation()})
+        setButtonAction(R.id.btnRoom, {testRoom()})
+
 
         testErrorHandler()
         testPref()
@@ -87,6 +91,55 @@ class MainActivity : AppCompatActivity() {
             .load(url)
             .into(target)
 
+    }
+
+    private fun testRoom() {
+        QuickExampleActivity.launch(this, { act, setContent ->
+            val binding: Example9Binding
+            binding = Example9Binding.inflate(layoutInflater)
+            setContent(binding.root)
+
+            // Room test
+            var db = AppDatabase.getInstance(applicationContext)
+            // DB는다른 쓰레드에서 처리해주어야 한다.
+            fun doAsyncQuery( fnAction : ()-> Unit = {}){
+                CoroutineScope(Dispatchers.IO).launch {
+                    fnAction()
+                }
+            }
+
+            db?.apply {
+                doAsyncQuery { accountDao().insert(AcccountInfo("test", 2000000, "EacDDE-2398-bC-lk-cdb89")) }
+            }
+
+            binding.apply {
+
+                // DB는 비동기처리 필수
+                showDBInfo(db)
+
+                btnDropTable.setOnClickListener {
+                    doAsyncQuery {
+                        db!!.accountDao().deleteAll()
+                        showDBInfo(db)
+                    }
+                }
+
+            }
+
+        })
+    }
+
+    private fun Example9Binding.showDBInfo(db: AppDatabase?) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val accounts = CoroutineScope(Dispatchers.IO).async {
+                db!!.accountDao().getAll()
+            }.await()
+
+            txtMessage.text = ""
+            accounts.forEach {
+                txtMessage.text = "${txtMessage.text}\n${it}"
+            }
+        }
     }
 
     private fun testBottomNavigation() {
