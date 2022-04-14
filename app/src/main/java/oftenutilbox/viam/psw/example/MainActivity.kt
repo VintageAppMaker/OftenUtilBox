@@ -23,8 +23,6 @@ import com.bumptech.glide.Glide
 
 import android.view.View
 import android.widget.*
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import kotlinx.coroutines.*
 import oftenutilbox.viam.psw.example.activity.*
 import oftenutilbox.viam.psw.example.data.room.tables.AcccountInfo
@@ -102,14 +100,14 @@ class MainActivity : AppCompatActivity() {
             // Room test
             var db = AppDatabase.getInstance(applicationContext)
             // DB는다른 쓰레드에서 처리해주어야 한다.
-            fun doAsyncQuery( fnAction : ()-> Unit = {}){
+            fun doRequest(fnAction : ()-> Unit = {}){
                 CoroutineScope(Dispatchers.IO).launch {
                     fnAction()
                 }
             }
 
             db?.apply {
-                doAsyncQuery { accountDao().insert(AcccountInfo("test", 2000000, "EacDDE-2398-bC-lk-cdb89")) }
+                doRequest { accountDao().insert(AcccountInfo("test", 2000000, "EacDDE-2398-bC-lk-cdb89")) }
             }
 
             binding.apply {
@@ -118,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                 showDBInfo(db)
 
                 btnDropTable.setOnClickListener {
-                    doAsyncQuery {
+                    doRequest {
                         db!!.accountDao().deleteAll()
                         showDBInfo(db)
                     }
@@ -130,16 +128,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun Example9Binding.showDBInfo(db: AppDatabase?) {
-        CoroutineScope(Dispatchers.Main).launch {
-            val accounts = CoroutineScope(Dispatchers.IO).async {
-                db!!.accountDao().getAll()
-            }.await()
+        fun doResuestForResult(dbReq: ()->Any, uiAction : (Any)->Unit){
+            CoroutineScope(Dispatchers.Main).launch {
+                val accounts = CoroutineScope(Dispatchers.IO).async {
+                    dbReq()
+                }.await()
 
-            txtMessage.text = ""
-            accounts.forEach {
-                txtMessage.text = "${txtMessage.text}\n${it}"
+                uiAction(accounts)
             }
         }
+        
+        doResuestForResult({
+            db!!.accountDao().getAll()
+        }, {
+            accounts ->
+            txtMessage.text = ""
+            var acc = (accounts as List<AcccountInfo>)
+            acc?.forEach {
+                txtMessage.text = "${txtMessage.text}\n${it}"
+            }
+        })
+
     }
 
     private fun testBottomNavigation() {
