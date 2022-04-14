@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
             // Room test
             var db = AppDatabase.getInstance(applicationContext)
-            // DB는다른 쓰레드에서 처리해주어야 한다.
+            // DB는 다른 쓰레드에서 처리해주어야 한다.
             fun doRequest(fnAction : ()-> Unit = {}){
                 CoroutineScope(Dispatchers.IO).launch {
                     fnAction()
@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
                 uiAction(accounts)
             }
         }
-        
+
         doResuestForResult({
             db!!.accountDao().getAll()
         }, {
