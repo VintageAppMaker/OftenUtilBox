@@ -100,14 +100,14 @@ class MainActivity : AppCompatActivity() {
             // Room test
             var db = AppDatabase.getInstance(applicationContext)
             // DB는 다른 쓰레드에서 처리해주어야 한다.
-            fun doRequest(fnAction : ()-> Unit = {}){
+            fun doDBRequest(fnAction : ()-> Unit = {}){
                 CoroutineScope(Dispatchers.IO).launch {
                     fnAction()
                 }
             }
 
             db?.apply {
-                doRequest { accountDao().insert(AcccountInfo("test", 2000000, "EacDDE-2398-bC-lk-cdb89")) }
+                doDBRequest { accountDao().insert(AcccountInfo("test", 2000000, "EacDDE-2398-bC-lk-cdb89")) }
             }
 
             binding.apply {
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                 showDBInfo(db)
 
                 btnDropTable.setOnClickListener {
-                    doRequest {
+                    doDBRequest {
                         db!!.accountDao().deleteAll()
                         showDBInfo(db)
                     }
@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun Example9Binding.showDBInfo(db: AppDatabase?) {
-        fun doResuestForResult(dbReq: ()->Any, uiAction : (Any)->Unit){
+        fun doDBRequestAndUI(dbReq: ()->Any, uiAction : (Any)->Unit){
             CoroutineScope(Dispatchers.Main).launch {
                 val accounts = CoroutineScope(Dispatchers.IO).async {
                     dbReq()
@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        doResuestForResult({
+        doDBRequestAndUI({
             db!!.accountDao().getAll()
         }, {
             accounts ->
