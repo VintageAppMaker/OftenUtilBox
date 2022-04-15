@@ -23,9 +23,11 @@ interface AccountDao {
     fun delete(user: AcccountInfo)
 
     // using query
+    @Transaction
     @Query("SELECT * FROM AcccountInfo")
     fun getAll(): List<AcccountInfo>
 
+    @Transaction
     @Query("delete FROM AcccountInfo")
     fun deleteAll()
 
