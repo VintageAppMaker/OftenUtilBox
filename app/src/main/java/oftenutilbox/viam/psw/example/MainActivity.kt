@@ -32,27 +32,30 @@ import oftenutilbox.viam.psw.example.data.room.tables.AppDatabase
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         DUtil.d(this.javaClass.toString(), "onCreate")
-
         setContentView(R.layout.activity_main)
 
+        setExampleHandler()
+
+    }
+
+    private fun setExampleHandler() {
         testSystemNavigation()
 
-        setButtonAction(R.id.btnViewModelTimer, {testViewModelTimer()})
-        setButtonAction(R.id.btnViewResize, {testViewSize()})
-        setButtonAction(R.id.btnViewRotation, {testViewRotation()})
-        setButtonAction(R.id.btnMagneticRecyclerView, {testMagneticRecyclerView()})
-        setButtonAction(R.id.btnAppBarlayout2Lines, {testAppbarlayout2Lines()})
-        setButtonAction(R.id.btnWeightChange, {testWeightChange()})
-        setButtonAction(R.id.btnViewPager, {testViewPager()})
-        setButtonAction(R.id.btnWebView, {testWebView()})
-        setButtonAction(R.id.btnFlexlayout, {testFlexlayout()})
-        setButtonAction(R.id.btnRatiolayout, {testRatiolayout()})
-        setButtonAction(R.id.btnServerAPI, {testServerAPITest()})
-        setButtonAction(R.id.btnNorification, {testNotification()})
-        setButtonAction(R.id.btnBottomNavigation, {testBottomNavigation()})
-        setButtonAction(R.id.btnRoom, {testRoom()})
+        setButtonAction(R.id.btnViewModelTimer, { testViewModelTimer() })
+        setButtonAction(R.id.btnViewResize, { testViewSize() })
+        setButtonAction(R.id.btnViewRotation, { testViewRotation() })
+        setButtonAction(R.id.btnMagneticRecyclerView, { testMagneticRecyclerView() })
+        setButtonAction(R.id.btnAppBarlayout2Lines, { testAppbarlayout2Lines() })
+        setButtonAction(R.id.btnWeightChange, { testWeightChange() })
+        setButtonAction(R.id.btnViewPager, { testViewPager() })
+        setButtonAction(R.id.btnWebView, { testWebView() })
+        setButtonAction(R.id.btnFlexlayout, { testFlexlayout() })
+        setButtonAction(R.id.btnRatiolayout, { testRatiolayout() })
+        setButtonAction(R.id.btnServerAPI, { testServerAPITest() })
+        setButtonAction(R.id.btnNorification, { testNotification() })
+        setButtonAction(R.id.btnBottomNavigation, { testBottomNavigation() })
+        setButtonAction(R.id.btnRoom, { testRoom() })
 
 
         testErrorHandler()
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         testConstraint()
         testBottomMessage()
-        
+
         testNestedScroll()
         testAlphaAnimation()
         testBottomDialog()
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         // textView의 백그라운드를 Glide를 통해 설정함.
         ImageTool.getNetworkDrawable(this@MainActivity,
             "https://avatars.githubusercontent.com/u/32689599?s=200&v=4",
-            {   img->
+            { img ->
                 runOnUiThread {
                     findViewById<TextView>(R.id.txtBackgroudText).apply {
                         background = img
@@ -88,7 +91,6 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this)
             .load(url)
             .into(target)
-
     }
 
     private fun testRoom() {
