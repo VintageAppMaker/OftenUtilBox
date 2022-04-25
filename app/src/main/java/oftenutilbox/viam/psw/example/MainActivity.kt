@@ -195,9 +195,7 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch() {
             val bm = NotificationUtil.getImageFromUrl("https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
             if (bm == null) return@launch
-            NotificationUtil.notiWithImage(this@MainActivity, R.drawable.ic_launcher_background, run{
-                intent
-            }, "타이틀 입니다.", "메시지 입니다. \n두번째 줄입니다.",  bm)
+            NotificationUtil.notiWithImage(this@MainActivity, R.drawable.ic_launcher_background, intent, "타이틀 입니다.", "메시지 입니다. \n두번째 줄입니다.",  bm)
         }
     }
 
